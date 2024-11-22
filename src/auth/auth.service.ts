@@ -33,12 +33,12 @@ export class AuthService {
     const user = await this.userModel.findOne({ email });
 
     if (!user) {
-      return { data: {}, error: 'Неверный email или пароль', success: false };
+      return { data: {}, error: 'Пользователь не существует', success: false };
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
     if (!isPasswordValid) {
-      return { data: {}, error: 'Неверный email или пароль', success: false };
+      return { data: {}, error: 'Неверный пароль', success: false };
     }
 
     const payload: JwtPayload = { email: user.email, sub: user.id };
