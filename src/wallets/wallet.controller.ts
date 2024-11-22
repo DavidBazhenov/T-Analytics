@@ -14,7 +14,6 @@ export class WalletController {
     @Post()
     async create(@Body() createWalletDto: CreateWalletDto, @User() user: any) {
         try {
-            console.log(user);
             createWalletDto.userId = user.sub;
             const wallet = await this.walletService.create(createWalletDto);
             return { data: wallet, error: '', success: true };
