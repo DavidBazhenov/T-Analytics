@@ -4,7 +4,7 @@ import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   // Публичный маршрут для создания пользователя
   @Post()
@@ -16,9 +16,8 @@ export class UserController {
   @Get('me')
   @UseGuards(AuthGuard) // Применяем AuthGuard
   async getCurrentUser(@Req() request) {
-    const userId = request.user.sub; 
-    console.log('--->', userId);
-    
+    const userId = request.user.sub;
+
     const user = await this.userService.findById(userId);
     return {
       id: user.id,
