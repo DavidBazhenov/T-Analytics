@@ -13,9 +13,10 @@ export class WalletService {
 
     // Создание нового кошелька
     async create(createWalletDto: CreateWalletDto): Promise<Wallet> {
-        const createdWallet = new this.walletModel(createWalletDto);
+        const createdWallet = new this.walletModel(createWalletDto);  // Передаем DTO с userId
         return createdWallet.save();
     }
+
 
     // Получение кошельков по userId
     async findAllByUserId(userId: string): Promise<Wallet[]> {

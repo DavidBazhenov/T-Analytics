@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
         secret: process.env.JWT_SECRET,
       });
       request.user = payload;
-      console.log("--->", payload);
       return true;
     } catch (error) {
       console.error("Ошибка верификации токена:", error);

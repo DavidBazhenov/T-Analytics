@@ -1,19 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import { InjectModel } from '@nestjs/mongoose';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Model } from 'mongoose';
+import { User } from '../users/schemas/user.schema';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Извлечение токена из заголовка Authorization
-      ignoreExpiration: false, // Не игнорировать срок действия токена
-      secretOrKey: process.env.JWT_SECRET || 'secret', // Секрет для проверки токена
-    });
-  }
+    constructor(@InjectModel('User') private readonly userModel: Model<User>) {
+        super({
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            ignoreExpiration: false,
+            secretOrKey: process.env.JWT_SECRET || 'secret',
+        });
+    }
 
-  async validate(payload: any) {
-    // Возвращаем данные пользователя из токена (доступны через request.user)
-    return { userId: payload.sub, email: payload.email };
-  }
+    async validate(payload: any) {
+        const user = await this.userModel.findOne({ email: payload.email });
+        if (!user) {
+            throw new Error('Unauthorized');
+        }
+        return user;
+    }
 }

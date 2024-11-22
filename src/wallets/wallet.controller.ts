@@ -2,8 +2,8 @@ import { Controller, Post, Get, Param, Body, Put, Delete, UseGuards } from '@nes
 import { WalletService } from './wallet.service';
 import { CreateWalletDto } from './dto/create-wallet.dto';
 import { UpdateWalletDto } from './dto/update-wallet.dto';
-import { Wallet } from './schemas/wallet.schema';
 import { AuthGuard } from '../auth/auth.guard';
+import { User } from '../auth/user.decorator';
 
 @Controller('wallets')
 export class WalletController {
@@ -12,22 +12,41 @@ export class WalletController {
     // Создание нового кошелька
     @UseGuards(AuthGuard)
     @Post()
-    async create(@Body() createWalletDto: CreateWalletDto): Promise<Wallet> {
-        return this.walletService.create(createWalletDto);
+    async create(@Body() createWalletDto: CreateWalletDto, @User() user: any) {
+        try {
+            console.log(user);
+            createWalletDto.userId = user.sub;
+            const wallet = await this.walletService.create(createWalletDto);
+            return { data: wallet, error: '', success: true };
+        } catch (error) {
+            return { data: {}, error: error.message, success: false };
+        }
     }
 
-    // Получение всех кошельков пользователя по userId
+    // Получение кошельков по userId
     @UseGuards(AuthGuard)
-    @Get('user/:userId')
-    async findAllByUserId(@Param('userId') userId: string): Promise<Wallet[]> {
-        return this.walletService.findAllByUserId(userId);
+    @Get('findManyWallets')
+    async findAllByUserId(@User() user: any) {
+        try {
+            const wallets = await this.walletService.findAllByUserId(user.sub);
+            return { data: wallets, error: '', success: true };
+        }
+        catch (error) {
+            return { data: {}, error: error, success: false };
+        }
     }
 
     // Получение кошелька по его ID
     @UseGuards(AuthGuard)
     @Get(':id')
-    async findOne(@Param('id') id: string): Promise<Wallet> {
-        return this.walletService.findOneById(id);
+    async findOne(@Param('id') id: string) {
+        try {
+            const wallet = this.walletService.findOneById(id);
+            return { data: wallet, error: '', success: true };
+        }
+        catch (error) {
+            return { data: {}, error: error, success: false };
+        }
     }
 
     // Обновление данных кошелька
@@ -36,14 +55,26 @@ export class WalletController {
     async update(
         @Param('id') id: string,
         @Body() updateWalletDto: UpdateWalletDto,
-    ): Promise<Wallet> {
-        return this.walletService.update(id, updateWalletDto);
+    ) {
+        try {
+            const wallet = this.walletService.update(id, updateWalletDto);
+            return { data: wallet, error: '', success: true };
+        }
+        catch (error) {
+            return { data: {}, error: error, success: false };
+        }
     }
 
     // Удаление кошелька
     @UseGuards(AuthGuard)
     @Delete(':id')
     async remove(@Param('id') id: string): Promise<any> {
-        return this.walletService.remove(id);
+        try {
+            const wallet = this.walletService.remove(id);
+            return { data: wallet, error: '', success: true };
+        }
+        catch (error) {
+            return { data: {}, error: error, success: false };
+        }
     }
 }

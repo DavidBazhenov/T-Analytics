@@ -6,24 +6,21 @@ import { AuthGuard } from '../auth/auth.guard';
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
-  // Публичный маршрут для создания пользователя
-  @Post()
-  async create(@Body() createUserDto: { name: string; email: string; passwordHash: string }) {
-    return this.userService.create(createUserDto);
-  }
-
-  // Защищённый маршрут для получения данных текущего пользователя
   @Get('me')
-  @UseGuards(AuthGuard) // Применяем AuthGuard
+  @UseGuards(AuthGuard)
   async getCurrentUser(@Req() request) {
     const userId = request.user.sub;
 
     const user = await this.userService.findById(userId);
     return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      createdAt: user.createdAt,
+      data: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        createdAt: user.createdAt,
+      },
+      error: '',
+      success: true
     };
   }
 }
