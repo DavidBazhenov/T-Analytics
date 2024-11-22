@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 export const UserSchema = new Schema({
   name: { type: String, required: true },
@@ -7,7 +7,14 @@ export const UserSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   settings: {
-    currency: { type: String, default: 'USD' },
-    language: { type: String, default: 'en' }
+    currency: { type: String, default: 'RUB' },
+    language: { type: String, default: 'ru' }
   }
 });
+
+export interface User extends Document {
+  id: string;
+  name: string;
+  email: string;
+  passwordHash: string;
+}
