@@ -8,6 +8,10 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: 'https://tlytics.ru', // или '*', если разрешены все домены
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Expense Tracker API')
     .setDescription('API for managing expenses and transactions')
