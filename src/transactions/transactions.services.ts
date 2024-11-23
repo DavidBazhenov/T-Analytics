@@ -168,6 +168,7 @@ export class TransactionService {
         }
     }) {
         const query: any = { userId: user.sub };
+        console.log(filters);
 
         if (filters.startDate || filters.endDate) {
             query.date = {};
@@ -179,7 +180,7 @@ export class TransactionService {
             }
         }
 
-        if (filters.category.name) {
+        if (filters && filters.category && filters.category.name) {
             query.category.name = filters.category.name;
         }
 
