@@ -14,9 +14,10 @@ pd.set_option('display.max_rows', None)  # Отображать все стро�
 pd.set_option('display.max_columns', None)  # Отображать все столбцы
 
 class ML_block_education:
-    def __init__(self, data : Generate_data) -> None:
+    def __init__(self, data : Generate_data, model_numer : int) -> None:
         self.data = data
         self.exclude_substrings = ['Transact to', 'Transact from']
+        self.model_number = model_numer
         
         
     def prediction_for_current_person(self, person_index : int) -> None:
@@ -49,7 +50,7 @@ class ML_block_education:
         
     def set_X_y(self, df_with_dummies : pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
         cat_columns = [cat for cat in df_with_dummies.columns if cat.startswith("Cat_")]
-
+        print(f'cat columns = {cat_columns}')
         # формирование матрицы признаков
         X = self.df_filtered_with_dummies[cat_columns]
         
@@ -72,10 +73,10 @@ class ML_block_education:
         rmse = np.sqrt(mse)
         r2 = r2_score(y_test, y_pred)
         
-        # print(f'mae = {mae}')
-        # print(f'mse = {mse}')
-        # print(f'rmse = {rmse}')
-        # print(f'r2 = {r2}')
+        print(f'mae = {mae}')
+        print(f'mse = {mse}')
+        print(f'rmse = {rmse}')
+        print(f'r2 = {r2}')
         
         dump(self.model, 'mlp_model.joblib')
         
@@ -97,5 +98,5 @@ class ML_block_education:
 if __name__ == "__main__":
     data = Generate_data(5, 120)   
     
-    ml_block = ML_block_education(data)
+    ml_block = ML_block_education(data, 1)
     ml_block.prediction_for_current_person(person_index=0)
