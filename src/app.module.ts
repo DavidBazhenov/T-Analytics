@@ -4,6 +4,7 @@ import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
 import { CategoryModule } from './categories/categories.module';
 import { WalletModule } from './wallets/wallet.module';
+import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { WalletModule } from './wallets/wallet.module';
     AuthModule,
     WalletModule,
     CategoryModule,
-
+    TransactionsModule
   ],
 })
 export class AppModule { }
