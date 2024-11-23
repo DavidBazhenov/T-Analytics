@@ -62,6 +62,14 @@ extension String {
         case authExitByTIDTitle
     }
     
+    enum Wallet: String {
+        case walletTitle
+        case walletAllSum
+        case walletReport
+        case walletCreateNewCardTitle
+        case walletCreateNewCashTitle
+    }
+    
 }
 
 extension RawRepresentable {

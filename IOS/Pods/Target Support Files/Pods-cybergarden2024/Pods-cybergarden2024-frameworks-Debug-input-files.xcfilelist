@@ -20,6 +20,7 @@ ${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
 ${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework
+${BUILT_PRODUCTS_DIR}/ScrollableGraphView/ScrollableGraphView.framework
 ${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework
 ${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework
 ${BUILT_PRODUCTS_DIR}/UIViewController+KeyboardAnimation/UIViewController_KeyboardAnimation.framework

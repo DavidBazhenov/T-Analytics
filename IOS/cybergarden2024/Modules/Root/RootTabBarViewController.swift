@@ -14,7 +14,7 @@ fileprivate extension RootTabBarItem {
         case .operations:
             return IntroViewController()
         case .wallets:
-            return IntroViewController()
+            return ControllerCreator.createWallet()
         case .ai:
             return IntroViewController()
         case .notifications:

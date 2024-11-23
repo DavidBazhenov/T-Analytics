@@ -85,4 +85,57 @@ struct API {
         
     }
     
+    struct Wallet {
+        
+        struct gettAllWallets: APIRequest {
+            var requestURL: String { return APIConfiguration.baseURL + "wallets/findManyWallets" }
+            var httpMethod: HTTPMethod { return .get }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                return parameters
+            }
+        }
+        
+        struct createWallet: APIRequest {
+            let name: String
+            let type: String
+            let balance: Float
+            let currency: String
+            
+            var requestURL: String { return APIConfiguration.baseURL + "wallets" }
+            var httpMethod: HTTPMethod { return .post }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                parameters["name"] = name
+                parameters["type"] = type
+                parameters["balance"] = balance
+                parameters["currency"] = currency
+                return parameters
+            }
+        }
+        
+    }
+    
+    struct Transaction {
+        
+        struct gettAllWalletsTransactions: APIRequest {
+            var requestURL: String { return APIConfiguration.baseURL + "transactions/getAllWalletsTransactions" }
+            var httpMethod: HTTPMethod { return .get }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                return parameters
+            }
+        }
+        
+        struct createTransaction: APIRequest {
+            var requestURL: String { return APIConfiguration.baseURL + "transactions/getAllWalletsTransactions" }
+            var httpMethod: HTTPMethod { return .get }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                return parameters
+            }
+        }
+        
+    }
+    
 }

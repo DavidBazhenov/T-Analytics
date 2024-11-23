@@ -37,6 +37,11 @@ enum AppImage: String {
     case eyeOpen
     case eyeClose
     
+    //Wallet
+    case walletCardIcon
+    case walletCashIcon
+    case walletReportIcon
+    
     //Sf images
     case sfClose = "xmark"
     case sfCrown = "crown"

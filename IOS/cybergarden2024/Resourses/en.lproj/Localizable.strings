@@ -47,3 +47,10 @@
 "ProfileMLTitle" = "Разрешение на ML";
 "ProfileShareTitle" = "Поделиться приложением";
 "ProfileLogoutTitle" = "Выход";
+
+// Wallet
+"WalletTitle" = "Кошельки";
+"WalletAllSum" = "Общее состояние";
+"WalletReport" = "Отчет";
+"WalletCreateNewCardTitle" = "Добавить банковский счет";
+"WalletCreateNewCashTitle" = "Создать новый кошелек";

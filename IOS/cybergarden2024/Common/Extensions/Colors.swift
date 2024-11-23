@@ -25,6 +25,7 @@ extension UIColor {
     static let appSystemOrange = UIColor.systemOrange
     
     static let hexF2F2F7 = UIColor(named: "#F2F2F7")!
+    static let hex5E6871 = UIColor(named: "#5E6871")!
     static let hexFF9500 = UIColor(named: "#FF9500")!
     static let hexF9F9F9 = UIColor(named: "#F9F9F9")!
     static let hexC45A3B = UIColor(named: "#C45A3B")!
@@ -48,9 +49,26 @@ extension UIColor {
     static let hexD1D1D6 = UIColor(named: "#D1D1D6")!
     static let hex383838 = UIColor(named: "#383838")!
     static let hexE1E1E1 = UIColor(named: "#E1E1E1")!
-    
     static let hex1D1D1D = UIColor(named: "#1D1D1D")!
+    static let hex2E2F34 = UIColor(named: "#2E2F34")!
     static let hexFEDE34 = UIColor(named: "#FEDE34")!
+    static let hex99AAB2 = UIColor(named: "#99AAB2")!
     static let hexECF1F7 = UIColor(named: "#ECF1F7")!
     static let hex22587C = UIColor(named: "#22587C")!
+}
+
+extension UIColor {
+    convenience init?(hex: String) {
+        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+        
+        var rgb: UInt64 = 0
+        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else { return nil }
+        
+        let red = CGFloat((rgb >> 16) & 0xFF) / 255.0
+        let green = CGFloat((rgb >> 8) & 0xFF) / 255.0
+        let blue = CGFloat(rgb & 0xFF) / 255.0
+        
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+    }
 }

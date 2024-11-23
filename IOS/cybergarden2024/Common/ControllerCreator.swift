@@ -13,6 +13,10 @@ class ControllerCreator {
         return RootTabBarViewController()
     }
     
+    static func createWallet() -> ViewController {
+        return WalletViewController()
+    }
+    
     static func createAuthorization() -> ViewController {
         return AuthorizationViewController()
     }

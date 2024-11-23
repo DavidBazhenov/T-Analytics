@@ -89,8 +89,12 @@
 		DDF0158F2CF20507003C523A /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF0158E2CF20500003C523A /* WalletViewController.swift */; };
 		DDF015942CF2052E003C523A /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015932CF20522003C523A /* WalletViewModel.swift */; };
 		DDF015962CF20568003C523A /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015952CF20566003C523A /* WalletView.swift */; };
-		DDF015982CF20737003C523A /* WalletsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015972CF20736003C523A /* WalletsModel.swift */; };
-		DDF0159A2CF20745003C523A /* TransactionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015992CF20745003C523A /* TransactionsModel.swift */; };
+		DDF015982CF20737003C523A /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015972CF20736003C523A /* WalletModel.swift */; };
+		DDF0159A2CF20745003C523A /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015992CF20745003C523A /* TransactionModel.swift */; };
+		DDF0159C2CF21E3A003C523A /* MultiplePlotsGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF0159B2CF21E36003C523A /* MultiplePlotsGraphView.swift */; };
+		DDF0159E2CF224C7003C523A /* ModalPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF0159D2CF224C6003C523A /* ModalPanelLayout.swift */; };
+		DDF015A12CF224FA003C523A /* CreateWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015A02CF224F6003C523A /* CreateWallet.swift */; };
+		DDF015A32CF23437003C523A /* WalletViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015A22CF2342D003C523A /* WalletViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,8 +184,12 @@
 		DDF0158E2CF20500003C523A /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		DDF015932CF20522003C523A /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		DDF015952CF20566003C523A /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
-		DDF015972CF20736003C523A /* WalletsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsModel.swift; sourceTree = "<group>"; };
-		DDF015992CF20745003C523A /* TransactionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsModel.swift; sourceTree = "<group>"; };
+		DDF015972CF20736003C523A /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
+		DDF015992CF20745003C523A /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		DDF0159B2CF21E36003C523A /* MultiplePlotsGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplePlotsGraphView.swift; sourceTree = "<group>"; };
+		DDF0159D2CF224C6003C523A /* ModalPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPanelLayout.swift; sourceTree = "<group>"; };
+		DDF015A02CF224F6003C523A /* CreateWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWallet.swift; sourceTree = "<group>"; };
+		DDF015A22CF2342D003C523A /* WalletViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +305,7 @@
 		DD4937F02CEA31870058B42A /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDF0159D2CF224C6003C523A /* ModalPanelLayout.swift */,
 				DD62E35E2CEA827000FA4AFC /* WhiteToastView.swift */,
 				DD62E3602CEA828500FA4AFC /* ViewsFactory.swift */,
 			);
@@ -441,8 +450,11 @@
 		DDF0158D2CF204CD003C523A /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				DDF015972CF20736003C523A /* WalletsModel.swift */,
-				DDF015992CF20745003C523A /* TransactionsModel.swift */,
+				DDF015A22CF2342D003C523A /* WalletViewCell.swift */,
+				DDF015A02CF224F6003C523A /* CreateWallet.swift */,
+				DDF0159B2CF21E36003C523A /* MultiplePlotsGraphView.swift */,
+				DDF015972CF20736003C523A /* WalletModel.swift */,
+				DDF015992CF20745003C523A /* TransactionModel.swift */,
 				DDF015952CF20566003C523A /* WalletView.swift */,
 				DDF015932CF20522003C523A /* WalletViewModel.swift */,
 				DDF0158E2CF20500003C523A /* WalletViewController.swift */,
@@ -610,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF0159E2CF224C7003C523A /* ModalPanelLayout.swift in Sources */,
 				DD4937E72CEA28F60058B42A /* AppDelegate.swift in Sources */,
 				DD62E31E2CEA7BE300FA4AFC /* AppOrientationHelper.swift in Sources */,
 				DD62E31C2CEA7BC000FA4AFC /* AppSetupManager.swift in Sources */,
@@ -628,11 +641,12 @@
 				DD62E3442CEA7C4F00FA4AFC /* UINavigationBarAppearance+Convenience.swift in Sources */,
 				DD62E3452CEA7C4F00FA4AFC /* Colors.swift in Sources */,
 				DDF015882CF18B0A003C523A /* TIDAuthorizationViewController.swift in Sources */,
-				DDF0159A2CF20745003C523A /* TransactionsModel.swift in Sources */,
+				DDF0159A2CF20745003C523A /* TransactionModel.swift in Sources */,
 				DDF015892CF18B0A003C523A /* TIDAuthorizationViewModel.swift in Sources */,
 				DD62E3462CEA7C4F00FA4AFC /* Date+Convenience.swift in Sources */,
 				DDF015702CF157B1003C523A /* ProfileModel.swift in Sources */,
 				DD62E3632CEA82A700FA4AFC /* Constants.swift in Sources */,
+				DDF015A12CF224FA003C523A /* CreateWallet.swift in Sources */,
 				DDF015722CF158A4003C523A /* Dictionary+Extensions.swift in Sources */,
 				DD62E3492CEA7C4F00FA4AFC /* UIViewController+Containment.swift in Sources */,
 				DDF015352CF0B92F003C523A /* ViewController.swift in Sources */,
@@ -641,9 +655,11 @@
 				DD62E34A2CEA7C4F00FA4AFC /* NSError+Convenience.swift in Sources */,
 				DD62E34C2CEA7C4F00FA4AFC /* Fonts.swift in Sources */,
 				DDF0156E2CF153F6003C523A /* ProfileViewModel.swift in Sources */,
+				DDF015A32CF23437003C523A /* WalletViewCell.swift in Sources */,
 				DDF0155F2CF12605003C523A /* ViewModel.swift in Sources */,
 				DDF015822CF172D3003C523A /* EditProfileView.swift in Sources */,
 				DDF015842CF172D6003C523A /* EditProfileViewModel.swift in Sources */,
+				DDF0159C2CF21E3A003C523A /* MultiplePlotsGraphView.swift in Sources */,
 				DDF015632CF126C8003C523A /* UserDefaultsHelper.swift in Sources */,
 				DDF015532CF0FD05003C523A /* AuthorizationView.swift in Sources */,
 				DDF0158B2CF18B0E003C523A /* TIDAuthorizationView.swift in Sources */,
@@ -657,7 +673,7 @@
 				DD62E3502CEA7C4F00FA4AFC /* UIView+Convenience.swift in Sources */,
 				DD62E3512CEA7C4F00FA4AFC /* String+Convenience.swift in Sources */,
 				DD62E3552CEA7C4F00FA4AFC /* FileManager+Convenience.swift in Sources */,
-				DDF015982CF20737003C523A /* WalletsModel.swift in Sources */,
+				DDF015982CF20737003C523A /* WalletModel.swift in Sources */,
 				DD62E3572CEA7C4F00FA4AFC /* Images.swift in Sources */,
 				DD62E3652CEA82E200FA4AFC /* UITableView+Convenience.swift in Sources */,
 				DDF015392CF0BAFD003C523A /* AuthorizationViewController.swift in Sources */,
