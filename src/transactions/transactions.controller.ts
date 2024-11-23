@@ -222,11 +222,7 @@ export class TransactionController {
         };
 
         const transactions = await this.transactionService.getTransactions(user, filters);
-        return {
-            data: transactions,
-            error: '',
-            success: true,
-        };
+        return transactions;
     }
 
     @Get('getAllWalletsTransactions')
@@ -269,10 +265,6 @@ export class TransactionController {
     async getAllWalletsTransactions(@User() user: any
     ) {
         const transactions = await this.transactionService.getAllWalletsTransactions(user);
-        return {
-            data: transactions,
-            error: '',
-            success: true,
-        };
+        return transactions;
     }
 }
