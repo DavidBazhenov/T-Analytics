@@ -300,4 +300,51 @@ export class TransactionController {
         const transactions = await this.transactionService.getAllWalletsTransactions(user);
         return transactions;
     }
+
+    @Get('getPredictTransactions')
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Get a list of transactions with optional filters' })
+
+    @ApiResponse({
+        status: 200,
+        description: 'List of transactions retrieved successfully',
+        schema: {
+            example: {
+                success: true,
+                data: [
+                    {
+                        id: '63f6a5e77c840f2c7bcf5e71',
+                        userId: '63f6a5e77c840f2c7bcf5e6e',
+                        category: {
+                            name: 'Groceries',
+                            icon: '🛒',
+                            color: '#FF5722',
+                        },
+                        walletFromId: '63f6a5e77c840f2c7bcf5e70',
+                        amount: 500,
+                        type: 'expense',
+                        date: '2024-11-01T10:00:00Z',
+                        description: 'Dinner at a restaurant',
+                    },
+                ],
+                error: '',
+            },
+        },
+    })
+    @ApiResponse({
+        status: 400,
+        description: 'Invalid date range',
+        schema: {
+            example: {
+                success: false,
+                data: null,
+                error: 'End date must be after start date',
+            },
+        },
+    })
+    async getPredictTransactions(@User() user: any
+    ) {
+        const transactions = await this.transactionService.getPredictTransactions(user);
+        return transactions;
+    }
 }
