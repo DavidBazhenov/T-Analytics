@@ -223,7 +223,7 @@ export class TransactionService {
 
       const transactionsArray = Object.values(transactions).map(walletTransactions => {
         return {
-          Date: walletTransactions.date.toString().split('T')[0],
+          Date: walletTransactions.date.toISOString().split('T')[0],
           Amount: walletTransactions.amount, // Поле суммы транзакции
           Category: walletTransactions.category.name, // Поле категории транзакции
         }
