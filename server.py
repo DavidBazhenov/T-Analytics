@@ -4,7 +4,7 @@ from joblib import load
 import pandas as pd
 
 app = FastAPI()
-model
+model = None
 
 @app.get("/")
 async def read_root():
