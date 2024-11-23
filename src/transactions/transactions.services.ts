@@ -219,20 +219,14 @@ export class TransactionService {
     try {
       const transactions = await this.transactionModel.find(query).exec();
 
-      const transactionsMap: { [walletId: string]: Transaction[] } = {};
-      transactions.forEach(transaction => {
-        if (!transactionsMap[transaction.walletFromId]) {
-          transactionsMap[transaction.walletFromId] = [];
-        }
-        transactionsMap[transaction.walletFromId].push(transaction);
-      });
 
-      const transactionsArray = Object.values(transactionsMap).map(walletTransactions => {
-        return walletTransactions.map(transaction => ({
-          Date: transaction.date.toString().split('T')[0],
-          Amount: transaction.amount, // Поле суммы транзакции
-          Category: transaction.category.name, // Поле категории транзакции
-        }));
+
+      const transactionsArray = Object.values(transactions).map(walletTransactions => {
+        return {
+          Date: walletTransactions.date.toString().split('T')[0],
+          Amount: walletTransactions.amount, // Поле суммы транзакции
+          Category: walletTransactions.category.name, // Поле категории транзакции
+        }
       });
       console.log(transactionsArray);
 
