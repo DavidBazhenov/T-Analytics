@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete, UseGuards, HttpCode } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 import { CategoryService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -13,7 +13,10 @@ export class CategoryController {
 
     // Добавление новой категории
     @Post()
-    @ApiOperation({ summary: 'Create a new category for the user' })
+    @ApiOperation({
+        summary: 'Create a new category for the user',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiBody({
         type: CreateCategoryDto,
         description: 'Data to create a new category',
@@ -61,7 +64,10 @@ export class CategoryController {
 
     // Создание категорий по умолчанию
     @Post('default')
-    @ApiOperation({ summary: 'Create default categories for the user' })
+    @ApiOperation({
+        summary: 'Create default categories for the user',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiResponse({
         status: 201,
         description: 'Default categories created successfully',
@@ -93,7 +99,10 @@ export class CategoryController {
 
     // Получение всех категорий пользователя
     @Get()
-    @ApiOperation({ summary: 'Get all categories for the user' })
+    @ApiOperation({
+        summary: 'Get all categories for the user',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiResponse({
         status: 200,
         description: 'User categories retrieved successfully',
@@ -114,6 +123,7 @@ export class CategoryController {
             },
         },
     })
+    @HttpCode(200)
     async getUserCategories(@User() user: any) {
         try {
             await this.categoryService.createDefaultCategories(user.sub);
@@ -126,7 +136,10 @@ export class CategoryController {
 
     // Удаление категории
     @Delete(':id')
-    @ApiOperation({ summary: 'Delete a category by its ID' })
+    @ApiOperation({
+        summary: 'Delete a category by its ID',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiResponse({
         status: 200,
         description: 'Category deleted successfully',

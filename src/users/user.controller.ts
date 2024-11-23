@@ -2,6 +2,7 @@ import { Controller, Get, UseGuards, Req } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
+import { access } from 'fs';
 
 @ApiTags('Users') // Группировка эндпоинтов в секцию "Users" в Swagger
 @Controller('users')
@@ -10,7 +11,10 @@ export class UserController {
 
   @Get('me')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: 'Get the current authenticated user' }) // Описание операции
+  @ApiOperation({
+    summary: 'Get the current authenticated user',
+    description: 'Use Bearer Token in Authorization header to get this response',
+  }) // Описание операции
   @ApiResponse({
     status: 200,
     description: 'Successfully retrieved the current user data',
@@ -53,4 +57,5 @@ export class UserController {
       success: true
     };
   }
+
 }

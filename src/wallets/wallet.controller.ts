@@ -14,7 +14,10 @@ export class WalletController {
     // Создание нового кошелька
     @UseGuards(AuthGuard)
     @Post()
-    @ApiOperation({ summary: 'Create a new wallet' })
+    @ApiOperation({
+        summary: 'Create a new wallet',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiBody({ type: CreateWalletDto, description: 'Data to create a new wallet' })
     @ApiResponse({
         status: 201,
@@ -58,7 +61,10 @@ export class WalletController {
     // Получение всех кошельков пользователя по userId
     @UseGuards(AuthGuard)
     @Get('findManyWallets')
-    @ApiOperation({ summary: 'Get all wallets for the user' })
+    @ApiOperation({
+        summary: 'Get all wallets for the user',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiResponse({
         status: 200,
         description: 'List of wallets retrieved successfully',
@@ -95,7 +101,10 @@ export class WalletController {
     // Получение кошелька по его ID
     @UseGuards(AuthGuard)
     @Get(':id')
-    @ApiOperation({ summary: 'Get wallet by ID' })
+    @ApiOperation({
+        summary: 'Get wallet by ID',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiParam({ name: 'id', description: 'Wallet ID' })
     @ApiResponse({
         status: 200,
@@ -138,7 +147,10 @@ export class WalletController {
     // Обновление данных кошелька
     @UseGuards(AuthGuard)
     @Put(':id')
-    @ApiOperation({ summary: 'Update wallet by ID' })
+    @ApiOperation({
+        summary: 'Update wallet by ID',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiParam({ name: 'id', description: 'Wallet ID' })
     @ApiBody({ type: UpdateWalletDto, description: 'Data to update the wallet' })
     @ApiResponse({
@@ -173,7 +185,10 @@ export class WalletController {
     // Удаление кошелька
     @UseGuards(AuthGuard)
     @Delete(':id')
-    @ApiOperation({ summary: 'Delete wallet by ID' })
+    @ApiOperation({
+        summary: 'Delete wallet by ID',
+        description: 'Use Bearer Token in Authorization header to get this response',
+    })
     @ApiParam({ name: 'id', description: 'Wallet ID' })
     @ApiResponse({
         status: 200,

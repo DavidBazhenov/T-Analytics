@@ -60,4 +60,35 @@ export class AuthService {
 
     return { data: { accessToken: accessToken }, error: '', success: true };
   }
+
+  async phoneLogin(phone: string): Promise<{ data: any, error: string, success: boolean }> {
+    let user = await this.userModel.findOne({ phone });
+
+    if (!user) {
+      user = new this.userModel({
+        name: 'Fake User', // Дефолтное имя
+        email: `${phone}@fake.com`, // Генерируем фейковый email
+        phone,
+        isFake: true, // Устанавливаем флаг фейкового пользователя
+        passwordHash: await bcrypt.hash('defaultPassword', 10),
+      });
+
+      await user.save();
+    }
+
+    // Генерируем JWT-токен для пользователя
+    const payload = { sub: user.id, phone: user.phone };
+    const accessToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_SECRET,
+      expiresIn: '1h',
+    });
+
+    return {
+      data: {
+        accessToken: accessToken,
+      },
+      error: '',
+      success: true,
+    };
+  }
 }
