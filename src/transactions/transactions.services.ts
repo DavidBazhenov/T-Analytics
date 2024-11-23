@@ -234,9 +234,11 @@ export class TransactionService {
           Category: transaction.category.name, // Поле категории транзакции
         }));
       });
+      console.log(transactionsArray);
 
       // Отправляем данные на сервер для предсказания
       const response = await axios.post('http://194.87.202.4:8000/predict/', transactionsArray);
+      console.log(response);
 
       // Возвращаем результат от API
       return {
