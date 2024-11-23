@@ -232,11 +232,14 @@ export class TransactionService {
 
       // Отправляем данные на сервер для предсказания
       const response = await axios.post('http://194.87.202.4:8000/predict/', transactionsArray);
-      console.log(response.data);
-
-      // Возвращаем результат от API
+      const predictedData = response.data.predictions.map((item: any) => ({
+        date: item.Date,
+        amount: item.Amount < 0 ? item.Amount * -1 : item.Amount,
+        category: item.Category,
+        type: item.Amount < 0 ? 'expense' : 'income',
+      }));
       return {
-        data: response.data,
+        data: predictedData,
         error: '',
         success: true,
       };
