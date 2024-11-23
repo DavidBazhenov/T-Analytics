@@ -10,8 +10,8 @@ import { JwtStrategy } from './jwt.strategy';
   imports: [
     UserModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'secret', // Секрет для подписи JWT
-      signOptions: { expiresIn: '1h' },
+      secret: process.env.JWT_SECRET || 'secret',
+      signOptions: { expiresIn: '12h' },
     }),
   ],
   controllers: [AuthController],

@@ -29,6 +29,7 @@ export class UserController {
           name: 'John Doe',
           email: 'john.doe@example.com',
           createdAt: '2024-11-20T08:20:34.567Z',
+          phone: '+1234567890',
         },
         error: '',
       },

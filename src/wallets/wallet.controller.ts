@@ -107,9 +107,8 @@ export class WalletController {
             const wallets = await this.walletService.findAllByUserId(user.sub);
 
             if (!wallets || wallets.length === 0) {
-                return { data: {}, error: 'No wallets found', success: false };
+                return { data: {}, error: '', success: true };
             }
-
 
             const totalSumInRub = wallets.reduce((acc, wallet) => {
                 const rate = wallet.currency === 'RUB' ? 1 : rateCur[wallet.currency];

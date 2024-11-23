@@ -19,10 +19,11 @@ export class CategoryService {
     // Создание категорий по умолчанию для нового пользователя
     async createDefaultCategories(userId: string): Promise<void> {
         const defaultCategories = [
-            { name: 'Salary', type: 'income', icon: '💰', color: '#4CAF50' },
-            { name: 'Groceries', type: 'expense', icon: '🛒', color: '#FF5722' },
-            { name: 'Transport', type: 'expense', icon: '🚗', color: '#03A9F4' },
-            { name: 'Entertainment', type: 'expense', icon: '🎮', color: '#FFC107' },
+            { name: 'salary', type: 'income', icon: '💰', color: '#4CAF50' },
+            { name: 'advance', type: 'income', icon: '💰', color: '#4CAF50' },
+            { name: 'food', type: 'expense', icon: '🛒', color: '#FF5722' },
+            { name: 'transport', type: 'expense', icon: '🚗', color: '#03A9F4' },
+            { name: 'entertainment', type: 'expense', icon: '🎮', color: '#FFC107' },
         ];
 
         // Получаем текущие категории пользователя
