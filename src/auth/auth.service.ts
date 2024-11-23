@@ -6,13 +6,54 @@ import { User } from '../users/schemas/user.schema';
 import { JwtPayload } from './jwt-payload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { error } from 'console';
-
+import { Wallet } from '../wallets/schemas/wallet.schema'; // Импорт модели Wallet
+import { Transaction } from '../transactions/schemas/transaction.schema'; // Импор
+import { TransactionModel } from '../transactions/schemas/transaction.schema'; // Путь к модели Transaction
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel('User') private readonly userModel: Model<User>,
-    private readonly jwtService: JwtService, // Используем JwtService
+    @InjectModel('User') private readonly userModel: Model<User>, // Модель User
+    @InjectModel('Wallet') private readonly walletModel: Model<Wallet>, // Модель Wallet
+    @InjectModel('Transaction') private readonly transactionModel: Model<Transaction>, // Модель Transaction
+    private readonly jwtService: JwtService,
   ) { }
+
+
+  // Генерация транзакций для кошелька
+  private async generateTransactions(
+    userId: string,
+    walletFromId: string,
+    walletToId: string | null,
+    currency: string,
+    min: number,
+    max: number
+  ): Promise<void> {
+    const transactionCount = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    const transactions = [];
+    for (let i = 0; i < transactionCount; i++) {
+      const type = walletToId ? 'transfer' : (Math.random() > 0.5 ? 'income' : 'expense');
+      const amount = (Math.random() * 100 - 50); // Сумма транзакции от -50 до 50
+      const transaction: any = {
+        userId,
+        categoryId: 'defaultCategory', // Пример категории
+        walletFromId,
+        walletToId,
+        amount,
+        type,
+        date: new Date(),
+        description: `Transaction ${i + 1}`,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      transactions.push(transaction);
+    }
+
+    // Сохранение транзакций в базе данных
+    await TransactionModel.insertMany(transactions);
+  }
+
 
   // Регистрация пользователя
   async register(name: string, email: string, password: string) {
@@ -74,6 +115,23 @@ export class AuthService {
       });
 
       await user.save();
+      const wallet1 = await this.walletModel.create({
+        userId: user.id,
+        currency: 'USD',
+        balance: Math.random() * 1000 + 500, // Баланс от 500 до 1500
+      });
+
+      const wallet2 = await this.walletModel.create({
+        userId: user.id,
+        currency: 'EUR',
+        balance: Math.random() * 1000 + 500, // Баланс от 500 до 1500
+      });
+
+      // Генерация транзакций для каждого кошелька
+      await Promise.all([
+        this.generateTransactions(user.id, wallet1.id, null, 'USD', 10, 20),
+        this.generateTransactions(user.id, wallet2.id, null, 'EUR', 10, 20),
+      ]);
     }
 
     // Генерируем JWT-токен для пользователя

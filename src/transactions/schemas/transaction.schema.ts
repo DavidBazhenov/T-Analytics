@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
 
 export const TransactionSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
@@ -12,6 +12,7 @@ export const TransactionSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });
+
 export interface Transaction extends Document {
   userId: string;
   categoryId: string;
@@ -24,3 +25,5 @@ export interface Transaction extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export const TransactionModel = model<Transaction>('Transaction', TransactionSchema);
