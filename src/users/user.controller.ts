@@ -18,7 +18,6 @@ export class UserController {
     summary: 'Get the current authenticated user',
     description: 'Use Bearer Token in Authorization header to get this response',
   }) // Описание операции
-  @ApiBody({ type: CreateUserDto, description: 'Data to update user' })
   @ApiResponse({
     status: 200,
     description: 'Successfully retrieved the current user data',
@@ -70,7 +69,19 @@ export class UserController {
     summary: 'Edit the current authenticated user data',
     description: 'Update the user data. Authorization header with Bearer Token is required.',
   })
-  @ApiBody({ type: UpdateUserDto, description: 'Data to update user' })
+  @ApiBody({
+    type: UpdateUserDto, description: 'Data to update user', examples: {
+      example: {
+        summary: 'Update user data',
+        value: {
+          name: 'Jane Doe',
+          email: 'jane.doe@example.com',
+          password: 'password123',
+          phone: '+1234567890',
+        }
+      }
+    }
+  })
   @ApiResponse({
     status: 200,
     description: 'Successfully updated the user data',
