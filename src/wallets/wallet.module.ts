@@ -12,7 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
     UserModule,
     AuthModule,
     MongooseModule.forFeature([{ name: 'Wallet', schema: WalletSchema }]),
-    JwtModule.register({ secret: process.env.JWT_SECRET || 'secret', signOptions: { expiresIn: '1h' } }),
+    JwtModule.register({ secret: process.env.JWT_SECRET || 'secret', signOptions: { expiresIn: '12h' } }),
   ],
   controllers: [WalletController],
   providers: [WalletService],

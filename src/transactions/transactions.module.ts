@@ -16,7 +16,7 @@ import { UserModule } from '../users/user.module';
             { name: 'Transaction', schema: TransactionSchema },
             { name: 'Wallet', schema: WalletSchema },
         ]),
-        JwtModule.register({ secret: process.env.JWT_SECRET || 'secret', signOptions: { expiresIn: '1h' } }),
+        JwtModule.register({ secret: process.env.JWT_SECRET || 'secret', signOptions: { expiresIn: '12h' } }),
     ],
     controllers: [TransactionController],
     providers: [TransactionService],

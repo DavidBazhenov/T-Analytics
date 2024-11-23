@@ -32,7 +32,7 @@ export class AuthService {
     const payload = { email: savedUser.email, sub: savedUser._id };
     const accessToken = this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET, // Секретный ключ
-      expiresIn: '1h',
+      expiresIn: '12h',
     });
 
     return { data: { accessToken }, error: '', success: true };
@@ -55,7 +55,7 @@ export class AuthService {
 
     const accessToken = this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET,
-      expiresIn: '1h',
+      expiresIn: '12h',
     });
 
     return { data: { accessToken: accessToken }, error: '', success: true };
@@ -80,7 +80,7 @@ export class AuthService {
     const payload = { sub: user.id, phone: user.phone };
     const accessToken = this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET,
-      expiresIn: '1h',
+      expiresIn: '12h',
     });
 
     return {
