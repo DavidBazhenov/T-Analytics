@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CyberGarden2024Android</string>
+    <string name="terms_and_privacy">
+        <![CDATA[
+            Создавая аккаунт, Вы подтверждаете, что внимательно прочитали и согласились с нашими
+            <a href="https://www.example.com/terms" style="color:#22587C">Условиями оказания услуг</a>
+            и нашей
+            <a href="https://www.example.com/privacy" style="color:#22587C">Политикой конфиденциальности</a>.
+        ]]>
+    </string>
+</resources>

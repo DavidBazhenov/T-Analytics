@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_operations"
+        android:icon="@drawable/operations"
+        android:title="Операции" />
+
+    <item
+        android:id="@+id/nav_wallet"
+        android:icon="@drawable/wallet"
+        android:title="Кошельки" />
+
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/chat"
+        android:title="AI" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/profile"
+        android:title="Профиль" />
+</menu>
