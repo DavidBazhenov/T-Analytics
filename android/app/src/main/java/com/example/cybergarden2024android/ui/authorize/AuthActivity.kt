@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cybergarden2024android.R
 import com.example.cybergarden2024android.data.network.ApiHelper
 import com.example.cybergarden2024android.data.network.ApiService
+import com.example.cybergarden2024android.data.network.Repository
 import com.example.cybergarden2024android.databinding.ActivityAuthBinding
 import com.example.cybergarden2024android.ui.main.MainActivity
 import com.example.cybergarden2024android.ui.register.RegisterActivity
@@ -35,10 +36,10 @@ class AuthActivity : AppCompatActivity() {
         // Создание зависимостей вручную
         val apiService = ApiService.create()
         val apiHelper = ApiHelper(apiService)
-        val authRepository = AuthRepository(apiHelper)
+        val repository = Repository(apiHelper)
 
         // Инициализация ViewModel через фабрику
-        val factory = AuthViewModelFactory(authRepository)
+        val factory = AuthViewModelFactory(repository)
         authViewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
 
         val content = SpannableString("Зарегистрироваться")
@@ -65,10 +66,13 @@ class AuthActivity : AppCompatActivity() {
             result.onSuccess { user ->
                 if (user.success) {
                     showError(false, "")
-                    val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+                    val sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
-                    editor.putString("access_token", user.accessToken)
-                    editor.apply()
+                    editor.putString("access_token", user.data.accessToken)
+                    editor.putString("name", user.data.name)
+                    editor.putString("email", user.data.email)
+                    editor.putString("phone", user.data.phone)
+                    editor.commit()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
@@ -95,6 +99,11 @@ class AuthActivity : AppCompatActivity() {
             else {
                 showError(true, "Невалидный e-mail")
             }
+        }
+
+        binding.AuthTID.setOnClickListener {
+            val intent = Intent(this, AuthTiDActivity::class.java)
+            startActivity(intent)
         }
 
         binding.regNavButton.setOnClickListener {

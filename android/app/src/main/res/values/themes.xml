@@ -3,8 +3,32 @@
     <style name="Base.Theme.CyberGarden2024Android" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/yellow_main</item>
+        <item name="colorSecondaryContainer">@color/gray</item>
+        <item name="colorOnSurface">@color/black</item>
     </style>
 
     <style name="Theme.CyberGarden2024Android" parent="Base.Theme.CyberGarden2024Android" />
 
+    <style name="Theme.MyApp.Main" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!--Base colors-->
+        <item name="colorPrimary">@color/transparent</item>
+        <item name="colorPrimaryVariant">@color/transparent</item>
+        <item name="colorSecondary">@color/transparent</item>
+
+        <item name="colorOnPrimary">@color/transparent</item>
+        <item name="colorOnError">@color/transparent</item>
+
+        <!--Style attributes-->
+        <item name="textAppearanceHeadline1">@color/transparent</item>
+        <item name="bottomSheetDialogTheme">@color/background</item>
+        <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Action</item>
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox</item>
+
+        <!--Params-->
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <!-- ... -->
+    </style>
 </resources>

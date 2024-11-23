@@ -14,6 +14,14 @@ object Validators {
         return password.matches(passwordRegex.toRegex())
     }
 
+    fun isValidPhoneNumber(phoneNumber: String): Boolean {
+        // Регулярное выражение для проверки формата номера с любым кодом страны
+        val phoneRegex = "^\\+\\d \\d{3} \\d{3}-\\d{2}-\\d{2}$".toRegex()
+        return phoneRegex.matches(phoneNumber)
+    }
+
+
+
     // Общий метод для проверки поля на пустоту
     fun isNotEmpty(field: String): Boolean {
         return field.isNotBlank()

@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cybergarden2024android.R
 import com.example.cybergarden2024android.data.network.ApiHelper
 import com.example.cybergarden2024android.data.network.ApiService
+import com.example.cybergarden2024android.data.network.Repository
 import com.example.cybergarden2024android.databinding.ActivityRegisterBinding
 import com.example.cybergarden2024android.ui.authorize.AuthActivity
 import com.example.cybergarden2024android.ui.main.MainActivity
@@ -41,9 +42,9 @@ class RegisterActivity : AppCompatActivity() {
 
         val apiService = ApiService.create()
         val apiHelper = ApiHelper(apiService)
-        val RegisterRepository = RegisterRepository(apiHelper)
+        val repository = Repository(apiHelper)
 
-        val factory = RegisterViewModelFactory(RegisterRepository)
+        val factory = RegisterViewModelFactory(repository)
         registerViewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
 
         val content = SpannableString("Войти")
@@ -84,9 +85,12 @@ class RegisterActivity : AppCompatActivity() {
         registerViewModel.registerResult.observe(this, Observer { result ->
             result.onSuccess { response ->
                 if (response.success) {
-                    val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+                    val sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
-                    editor.putString("access_token", response.accessToken)
+                    editor.putString("access_token", response.data.accessToken)
+                    editor.putString("name", response.data.name)
+                    editor.putString("email", response.data.email)
+                    editor.putString("phone", response.data.phone)
                     editor.apply()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)

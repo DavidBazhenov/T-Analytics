@@ -19,6 +19,7 @@
         style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background"
         app:backgroundTint="@color/background"
         app:itemTextAppearanceActive="@color/yellow_main"
         app:itemTextColor="@color/white"

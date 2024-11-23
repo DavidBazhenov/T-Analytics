@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Состояние ВКЛЮЧЕНО -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#284393" /> <!-- Цвет для состояния "on" -->
+        </shape>
+    </item>
+    <!-- Состояние ВЫКЛЮЧЕНО -->
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#FFD3D3D3" /> <!-- Цвет для состояния "off" -->
+        </shape>
+    </item>
+</selector>

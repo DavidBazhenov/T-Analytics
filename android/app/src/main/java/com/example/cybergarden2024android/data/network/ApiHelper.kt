@@ -10,8 +10,21 @@ class ApiHelper(private val apiService: ApiService) {
         return apiService.login(request)
     }
 
+    suspend fun loginTID(phone: String): Response<AuthResponse> {
+        return apiService.loginTID(phone)
+    }
+
     suspend fun register(username: String, email: String, password: String): Response<AuthResponse> {
         val request = RegisterRequest(name = username, email = email, password = password)
         return apiService.register(request)
+    }
+
+    suspend fun getInfoUser(accessToken: String): Response<AuthResponse> {
+        return apiService.getInfoUser(accessToken)
+    }
+
+    suspend fun updateUserProfile(accessToken: String, name: String?, email: String?, phone: String?): Response<AuthResponse> {
+        val request = UpdateProfileRequest(name = name, email = email, phone = phone)
+        return apiService.updateUserInfo(accessToken, request)
     }
 }
