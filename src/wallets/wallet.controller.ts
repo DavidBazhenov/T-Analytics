@@ -5,6 +5,7 @@ import { CreateWalletDto } from './dto/create-wallet.dto';
 import { UpdateWalletDto } from './dto/update-wallet.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { User } from '../auth/user.decorator';
+import axios from 'axios';
 
 @ApiTags('Wallets') // Группировка эндпоинтов в секцию "Wallets" в Swagger
 @Controller('wallets')
@@ -93,10 +94,33 @@ export class WalletController {
             },
         },
     })
+
+
     async findAllByUserId(@User() user: any) {
         try {
+
+            const rateCur = {
+                USD: 104.31,
+                EUR: 108.68,
+                GBP: 130.70
+            }
             const wallets = await this.walletService.findAllByUserId(user.sub);
-            return { data: wallets, error: '', success: true };
+
+            if (!wallets || wallets.length === 0) {
+                return { data: {}, error: 'No wallets found', success: false };
+            }
+
+
+            const totalSumInRub = wallets.reduce((acc, wallet) => {
+                const rate = wallet.currency === 'RUB' ? 1 : rateCur[wallet.currency];
+                return acc + wallet.balance * rate;
+            }, 0);
+
+            return {
+                data: { wallets, summ: totalSumInRub },
+                error: '',
+                success: true
+            };
         } catch (error) {
             return { data: {}, error: error.message, success: false };
         }
