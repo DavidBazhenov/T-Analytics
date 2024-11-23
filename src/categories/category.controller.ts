@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get, Param, Delete, UseGuards, HttpCode } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBody, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { CategoryService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { AuthGuard } from '../auth/auth.guard';
@@ -13,6 +13,7 @@ export class CategoryController {
 
     // Добавление новой категории
     @Post()
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Create a new category for the user',
         description: 'Use Bearer Token in Authorization header to get this response',
@@ -64,6 +65,7 @@ export class CategoryController {
 
     // Создание категорий по умолчанию
     @Post('default')
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Create default categories for the user',
         description: 'Use Bearer Token in Authorization header to get this response',
@@ -99,6 +101,7 @@ export class CategoryController {
 
     // Получение всех категорий пользователя
     @Get()
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Get all categories for the user',
         description: 'Use Bearer Token in Authorization header to get this response',
@@ -136,6 +139,7 @@ export class CategoryController {
 
     // Удаление категории
     @Delete(':id')
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Delete a category by its ID',
         description: 'Use Bearer Token in Authorization header to get this response',

@@ -11,6 +11,7 @@ export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Get('me')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Get the current authenticated user',
@@ -61,6 +62,7 @@ export class UserController {
   }
 
   @Put('me')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Edit the current authenticated user data',

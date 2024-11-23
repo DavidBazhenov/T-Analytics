@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Param, Body, Put, Delete, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import { WalletService } from './wallet.service';
 import { CreateWalletDto } from './dto/create-wallet.dto';
 import { UpdateWalletDto } from './dto/update-wallet.dto';
@@ -14,6 +14,7 @@ export class WalletController {
     // Создание нового кошелька
     @UseGuards(AuthGuard)
     @Post()
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Create a new wallet',
         description: 'Use Bearer Token in Authorization header to get this response',
@@ -61,6 +62,7 @@ export class WalletController {
     // Получение всех кошельков пользователя по userId
     @UseGuards(AuthGuard)
     @Get('findManyWallets')
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Get all wallets for the user',
         description: 'Use Bearer Token in Authorization header to get this response',
@@ -101,6 +103,7 @@ export class WalletController {
     // Получение кошелька по его ID
     @UseGuards(AuthGuard)
     @Get(':id')
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Get wallet by ID',
         description: 'Use Bearer Token in Authorization header to get this response',
@@ -147,6 +150,7 @@ export class WalletController {
     // Обновление данных кошелька
     @UseGuards(AuthGuard)
     @Put(':id')
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Update wallet by ID',
         description: 'Use Bearer Token in Authorization header to get this response',
@@ -185,6 +189,7 @@ export class WalletController {
     // Удаление кошелька
     @UseGuards(AuthGuard)
     @Delete(':id')
+    @ApiBearerAuth()
     @ApiOperation({
         summary: 'Delete wallet by ID',
         description: 'Use Bearer Token in Authorization header to get this response',

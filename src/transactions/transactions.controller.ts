@@ -1,7 +1,7 @@
 import { Controller, Post, Put, Delete, Body, Param, Query, Get, UseGuards } from '@nestjs/common';
 import { TransactionService } from './transactions.services';
 import { Transaction } from './schemas/transaction.schema';
-import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { CreateTransactionDto } from './dto/create-transactions.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { User } from '../auth/user.decorator';
@@ -12,6 +12,7 @@ export class TransactionController {
 
 
     @Post()
+    @ApiBearerAuth()
     @ApiOperation({ summary: 'Create a new transaction' })
     @ApiBody({
         description: 'Transaction details',
@@ -67,6 +68,7 @@ export class TransactionController {
     }
 
     @Put(':id')
+    @ApiBearerAuth()
     @ApiOperation({ summary: 'Update an existing transaction' })
     @ApiParam({
         name: 'id',
@@ -124,6 +126,7 @@ export class TransactionController {
     }
 
     @Delete(':id')
+    @ApiBearerAuth()
     @ApiOperation({ summary: 'Delete a transaction' })
     @ApiParam({
         name: 'id',
@@ -155,6 +158,7 @@ export class TransactionController {
     }
 
     @Get()
+    @ApiBearerAuth()
     @ApiOperation({ summary: 'Get a list of transactions with optional filters' })
     @ApiQuery({
         name: 'startDate',
