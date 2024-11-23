@@ -62,7 +62,7 @@ export class TransactionController {
             },
         },
     })
-    async createTransaction(@Body() data: Partial<Transaction>, @User() user: any) {
+    async createTransaction(@User() user: any, @Body() data: Partial<Transaction>) {
         return this.transactionService.createTransaction(user, data);
     }
 
@@ -156,7 +156,7 @@ export class TransactionController {
         return { success: true };
     }
 
-    @Get()
+    @Get('getAllTransactions')
     @ApiBearerAuth()
     @ApiOperation({ summary: 'Get a list of transactions with optional filters' })
     @ApiQuery({
@@ -222,6 +222,53 @@ export class TransactionController {
         };
 
         const transactions = await this.transactionService.getTransactions(user, filters);
+        return {
+            data: transactions,
+            error: '',
+            success: true,
+        };
+    }
+
+    @Get('getAllWalletsTransactions')
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Get a list of transactions with optional filters' })
+
+    @ApiResponse({
+        status: 200,
+        description: 'List of transactions retrieved successfully',
+        schema: {
+            example: {
+                success: true,
+                data: [
+                    {
+                        id: '63f6a5e77c840f2c7bcf5e71',
+                        userId: '63f6a5e77c840f2c7bcf5e6e',
+                        categoryId: '63f6a5e77c840f2c7bcf5e6f',
+                        walletFromId: '63f6a5e77c840f2c7bcf5e70',
+                        amount: 500,
+                        type: 'expense',
+                        date: '2024-11-01T10:00:00Z',
+                        description: 'Dinner at a restaurant',
+                    },
+                ],
+                error: '',
+            },
+        },
+    })
+    @ApiResponse({
+        status: 400,
+        description: 'Invalid date range',
+        schema: {
+            example: {
+                success: false,
+                data: null,
+                error: 'End date must be after start date',
+            },
+        },
+    })
+    async getAllWalletsTransactions(@User() user: any
+    ) {
+        const transactions = await this.transactionService.getAllWalletsTransactions(user);
         return {
             data: transactions,
             error: '',

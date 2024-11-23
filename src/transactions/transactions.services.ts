@@ -17,6 +17,7 @@ export class TransactionService {
         const transactionData = {
             ...data,
             date: date || new Date().toISOString().split('T')[0],
+            userId: user.sub,
         };
         // Проверяем кошельки (если указаны)
         const walletFrom = walletFromId
@@ -137,6 +138,26 @@ export class TransactionService {
         try {
             const transactions = await this.transactionModel.find(query).exec();
             return { data: { transactions }, error: '', success: true };
+        } catch (error) {
+            return { data: {}, error: error.message, success: false };
+        }
+    }
+
+    async getAllWalletsTransactions(@User() user: any) {
+        const query: any = { userId: user.sub };
+
+        try {
+            const transactions = await this.transactionModel.find(query).exec();
+            const transactionsMap: { [walletId: string]: Transaction[] } = {};
+            transactions.forEach(transaction => {
+                if (!transactionsMap[transaction.walletFromId]) {
+                    transactionsMap[transaction.walletFromId] = [];
+                }
+                transactionsMap[transaction.walletFromId].push(transaction);
+            });
+
+            const transactionsArray = Object.values(transactionsMap);
+            return { data: { transactionsArray }, error: '', success: true };
         } catch (error) {
             return { data: {}, error: error.message, success: false };
         }

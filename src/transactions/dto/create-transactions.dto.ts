@@ -1,6 +1,7 @@
 import { IsOptional, IsString, IsNumber, IsDateString, IsEnum } from 'class-validator';
 
 export class CreateTransactionDto {
+    @IsOptional()
     @IsString()
     userId: string;
 

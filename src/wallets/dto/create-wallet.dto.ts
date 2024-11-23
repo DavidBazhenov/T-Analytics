@@ -21,6 +21,11 @@ export class CreateWalletDto {
     @IsNotEmpty()
     currency: string;
 
+    @ApiProperty({ description: 'Color of the wallet', example: '#FF5722' })
+    @IsString()
+    @IsNotEmpty()
+    color: string;
+
     @IsOptional()
     userId?: string;
 }

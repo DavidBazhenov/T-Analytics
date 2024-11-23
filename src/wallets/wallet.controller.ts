@@ -52,6 +52,8 @@ export class WalletController {
     async create(@Body() createWalletDto: CreateWalletDto, @User() user: any) {
         try {
             createWalletDto.userId = user.sub;
+            const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+            createWalletDto.color = createWalletDto.color || randomColor;
             const wallet = await this.walletService.create(createWalletDto);
             return { data: wallet, error: '', success: true };
         } catch (error) {
