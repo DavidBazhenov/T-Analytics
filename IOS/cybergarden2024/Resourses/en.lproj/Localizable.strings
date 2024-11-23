@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  cybergarden2024
+
+  Created by Сергей Бекезин on 22.11.2024.
+  
+*/
+
+// Root
+"RootOperationsTitle" = "Операции";
+"RootWalletsTitle" = "Кошельки";
+"RootChatBotTitle" = "AI";
+"RootNotificationsTitle" = "Уведомления";
+"RootProfileTitle" = "Профиль";
+
+// Auth
+"AuthLogoTitle" = "Т-Аналитика";
+"AuthRegistrationWordTitle" = "Войти";
+"AuthExitWordTitle" = "Зарегистрироваться";
+"AuthGoogleTitle" = "Google";
+"AuthFastAccessTitle" = "или получите быстрый доступ";
+"AuthEmailTitle" = "Электронная почта";
+"AuthPhoneTitle" = "Номер телефона";
+"AuthPasswordTitle" = "Пароль";
+"AuthExitTitle" = "Нет аккаунта? Зарегистрироваться";
+"AuthRegistrationTitle" = "Уже зарегистрированы? Войти";
+"AuthTosAndPrivacyTitle" = "Создавая аккаунт, Вы подтверждаете, что внимательно прочитали и согласились с нашими Условиями оказания услуг и нашей Политикой конфиденциальности.";
+"AuthTosTitle" = "Условиями оказания услуг";
+"AuthPrivacyTitle" = "Политикой конфиденциальности.";
+"AuthErrorLoginOrPasswordTitle" = "Некорректный логин  или пароль";
+"AuthConfirmPasswordTitle" = "Некорректный логин  или пароль";
+"AuthNameTitle" = "Фамилия Имя";
+"AuthPasswordQuestionTitle" = "Придумайте пароль";
+"AuthContinueTitle" = "Продолжить";
+"AuthExitByTIDTitle" = "Войти с помощью T ID";
+
+// Profile
+"ProfileMainTitle" = "Профиль";
+"ProfileTosTitle" = "Условия оказания услуг";
+"ProfilePrivacyTitle" = "Политика конфиденциальности";
+"ProfileReportTitle" = "Отзывы";
+"ProfileEditorTitle" = "Редактирование профиля";
+"ProfileSupportTitle" = "Поддержка";
+"ProfileEditMainTitle" = "Редактирование профиля";
+"ProfileSaveTitle" = "Сохранить";
+"ProfileBackTitle" = "Назад";
+"ProfileMLTitle" = "Разрешение на ML";
+"ProfileShareTitle" = "Поделиться приложением";
+"ProfileLogoutTitle" = "Выход";
