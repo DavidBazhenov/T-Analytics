@@ -16,11 +16,12 @@ async def load_model():
     """
     Загружает модель при запуске приложения.
     """
+    print("START SERVER")
     global model
     try:
         # Загрузка модели
         model = load('mlp_model.joblib')
-
+        print(model)
         # Проверка, что модель загружена
         if model is None:
             raise HTTPException(status_code=501, detail="Model not loaded properly")
@@ -37,13 +38,13 @@ class NeuralNetResponse(BaseModel):
 
 @app.post("/predict/")
 async def get_predictions(request: Request):
+    print("HANDLE POST")
     """
     Обрабатывает POST-запрос, принимает массив JSON, проверяет его, отправляет данные нейросети и возвращает результат.
     """
     try:
         # Извлекаем тело запроса
         body = await request.json()
-        
         # Проверяем, что тело не пустое
         if not body:
             raise HTTPException(status_code=400, detail="Empty request body")
@@ -62,7 +63,8 @@ async def get_predictions(request: Request):
                 
             try:
                 predicted_data = predict_future_income(data)
-                return NeuralNetResponse(predictions=predicted_data)
+                for i in range(len(predicted_data)): body[i]['Amount'] = predicted_data[i]
+                return NeuralNetResponse(predictions=body)
             except Exception as e:
                 HTTPException(status_code=504, detail='Error during prediction')
                 

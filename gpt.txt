@@ -1,25 +1,17 @@
-Вот так выгляит категориальная матрица признаков: 
-Cat_Advance  Cat_Entertainment  Cat_Food  Cat_Salary  Cat_Transport
-0          False              False     False       False           True
-1          False               True     False       False          False
-2          False              False      True       False          False
-3          False               True     False       False          False
-4          False              False     False       False           True
-5          False              False     False       False           True
-6          False               True     False       False          False
-8          False              False      True       False          False
-9          False               True     False       False          False
-11         False              False      True       False          False
-12         False               True     False       False          False
-13         False               True     False       False          False
-14         False              False      True       False          False
-15         False              False     False       False           True
-16         False               True     False       False          False
-17         False              False      True       False          False
-18         False              False      True       False          False
-19         False               True     False       False          False
-20         False              False      True       False          False
-21         False              False     False       False           True
-22         False              False     False       False           True
-25         False               True     False       False          False
-29         False              False     False       False           True
+Так хорошо, теперь задача для тебя написать продвинутый генератор данных для датафрейма, 
+который будет включать зарплату и аванс. Так же на основе финансовых возможностей человека, 
+то есть его зарплаты и аванса, будет генерировать список его трат. 
+Структура для нашего датафрейма должна выглядеть вот таким образом : 
+data = {   
+    'Date' : ['2024-01-01', '2024-01-02', ...],
+    'Amount' : [100000, -505.3, -100, 400 ...],
+    'Category' : ['Salary', 'Transport', 'Transact to', 'Transact from']
+}
+Длины массивов по ключам должны 'Date', 'Amount', 'Category' должны быть одинаковыми.
+В один и тот же день допускается несколько трат, каждая трата должна иметь отрицательное значение
+в столбце Amount. Категория 'Transact to' подразумевает перевод кому-то другому на счет,
+то есть уменьшает баланс счета. Категория 'Transact from' подразумевает перевод от кого-то другого на счет,
+то есть увеличивает баланс карты. Давай по минимум будем использовать категории 'Transact to', 'Transact from'.
+Каждый месяц должны быть поступления по зарплате 'Salary' и по авансу 'Advance' минимум 1 раз, максимум 3 раза.
+Категории трат можешь придумать достаточно много. Название категории должно начинаться с большой буквы.
+По требованием это все. Генератор должен быть написан на python.å  

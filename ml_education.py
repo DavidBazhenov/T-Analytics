@@ -52,10 +52,10 @@ class ML_block_education:
 
         # формирование матрицы признаков
         X = self.df_filtered_with_dummies[cat_columns]
-        print(X)
+        
         # целевая переменная
         y = self.df_filtered_with_dummies['Amount']
-        print(y)
+        
         return X, y
         
         
@@ -63,6 +63,7 @@ class ML_block_education:
         X_train, X_test , y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=42, shuffle=True)
         self.model = LinearRegression()
         self.model.fit(X_train, y_train)
+        print(self.model)
         
         y_pred = self.model.predict(X_test)
         
@@ -71,10 +72,10 @@ class ML_block_education:
         rmse = np.sqrt(mse)
         r2 = r2_score(y_test, y_pred)
         
-        print(f'mae = {mae}')
-        print(f'mse = {mse}')
-        print(f'rmse = {rmse}')
-        print(f'r2 = {r2}')
+        # print(f'mae = {mae}')
+        # print(f'mse = {mse}')
+        # print(f'rmse = {rmse}')
+        # print(f'r2 = {r2}')
         
         dump(self.model, 'mlp_model.joblib')
         
