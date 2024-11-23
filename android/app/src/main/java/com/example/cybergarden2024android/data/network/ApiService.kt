@@ -1,6 +1,8 @@
 package com.example.cybergarden2024android.data.network
 
+import android.icu.util.Currency
 import com.example.cybergarden2024android.data.network.models.AuthResponse
+import com.example.cybergarden2024android.data.network.models.Wallets
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,6 +28,12 @@ interface ApiService {
 
     @POST("auth/register")
     suspend fun register(@Body request: RegisterRequest): Response<AuthResponse>
+
+    @POST("wallets")
+    suspend fun createWallet(@Header("Authorization") authHeader: String, @Body request: Wallet): Response<Wallet>
+
+    @GET("wallets/findManyWallets")
+    suspend fun getWallets(@Header("Authorization") authHeader: String): Response<Wallets>
 
     companion object {
         private const val BASE_URL = "http://194.87.202.4:3000/"
@@ -55,5 +63,12 @@ data class UpdateProfileRequest(
     val name: String?,
     val email: String?,
     val phone: String?
+)
+
+data class Wallet(
+    val name: String,
+    val type: String,
+    val balance: Int,
+    val currency: String
 )
 

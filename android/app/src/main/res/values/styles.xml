@@ -4,5 +4,12 @@
         <item name="android:thumb">@drawable/ios_switch_thumb</item>
         <item name="android:track">@drawable/ios_switch_track</item>
     </style>
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:layout_height">match_parent</item>
+    </style>
 
 </resources>

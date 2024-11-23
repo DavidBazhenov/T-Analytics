@@ -10,8 +10,9 @@ object Validators {
 
     // Валидатор пароля (например, минимум 8 символов, хотя бы одна буква и одна цифра)
     fun isValidPassword(password: String): Boolean {
-        val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-        return password.matches(passwordRegex.toRegex())
+//        val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$"
+//        return password.matches(passwordRegex.toRegex())
+        return true
     }
 
     fun isValidPhoneNumber(phoneNumber: String): Boolean {

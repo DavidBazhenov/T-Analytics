@@ -70,4 +70,10 @@ dependencies {
 
     implementation("com.googlecode.libphonenumber:libphonenumber:8.12.41")
 
+    implementation("androidx.fragment:fragment-ktx:1.5.5")
+
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
+
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 }
