@@ -12,10 +12,56 @@ export class TransactionService {
         @InjectModel('Wallet') private walletModel: Model<Wallet>,
     ) { }
 
+    private createCategory(CategoryName: string): { name: string, icon: string, color: string } {
+        if (CategoryName === 'Food') {
+            return {
+                name: 'Food',
+                icon: '🍔',
+                color: '#FF5722',
+            };
+        } else if (CategoryName === 'Transport') {
+            return {
+                name: 'Transport',
+                icon: '🚗',
+                color: '#FF5722',
+            };
+        } else if (CategoryName === 'Entertainment') {
+            return {
+                name: 'Entertainment',
+                icon: '🎉',
+                color: '#FF5722',
+            };
+        } else if (CategoryName === 'Advance') {
+            return {
+                name: 'Advance',
+                icon: '💸',
+                color: '#FF5722',
+            };
+        } else if (CategoryName === 'Salary') { // Исправлено из "name" на "CategoryName"
+            return {
+                name: 'Salary',
+                icon: '💰',
+                color: '#FF5722',
+            };
+        }
+        // Значение по умолчанию
+        return {
+            name: 'Food',
+            icon: '🛒',
+            color: '#FF5722',
+        };
+    }
+
+
     async createTransaction(@User() user: any, data: Partial<Transaction>) {
         const { walletFromId, walletToId, amount, type, date } = data;
+
+        if (data.category.name !== 'Food' && data.category.name !== 'Transport' && data.category.name !== 'Entertainment' && data.category.name !== 'Advance' && data.category.name !== 'Salary') {
+            return { data: {}, error: 'Неправильная категория', success: false };
+        }
         const transactionData = {
             ...data,
+            category: this.createCategory(data.category.name),
             date: date || new Date().toISOString().split('T')[0],
             userId: user.sub,
         };
@@ -117,7 +163,9 @@ export class TransactionService {
     async getTransactions(@User() user: any, filters: {
         startDate?: Date;
         endDate?: Date;
-        categoryId?: string;
+        category?: {
+            name: string;
+        }
     }) {
         const query: any = { userId: user.sub };
 
@@ -131,8 +179,8 @@ export class TransactionService {
             }
         }
 
-        if (filters.categoryId) {
-            query.categoryId = filters.categoryId;
+        if (filters.category.name) {
+            query.category.name = filters.category.name;
         }
 
         try {

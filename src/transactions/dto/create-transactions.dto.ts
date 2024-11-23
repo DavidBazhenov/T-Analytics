@@ -6,7 +6,7 @@ export class CreateTransactionDto {
     userId: string;
 
     @IsString()
-    categoryId: string;
+    category: { name: string; icon: string; color: string };
 
     @IsOptional()
     @IsString()

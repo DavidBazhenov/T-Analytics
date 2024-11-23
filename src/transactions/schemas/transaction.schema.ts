@@ -2,7 +2,11 @@ import { Document, Schema, model } from 'mongoose';
 
 export const TransactionSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  categoryId: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
+  category: {
+    name: { type: Schema.Types.String, required: true },
+    icon: { type: Schema.Types.String, required: false },
+    color: { type: Schema.Types.String, required: false }
+  },
   walletFromId: { type: Schema.Types.ObjectId, ref: 'Wallet', required: true },
   walletToId: { type: Schema.Types.ObjectId, ref: 'Wallet', default: null },
   amount: { type: Number, required: true },
@@ -15,7 +19,11 @@ export const TransactionSchema = new Schema({
 
 export interface Transaction extends Document {
   userId: string;
-  categoryId: string;
+  category: {
+    name: string;
+    icon: string;
+    color: string;
+  };
   walletFromId: string;
   walletToId?: string;
   amount: number;
@@ -25,5 +33,3 @@ export interface Transaction extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
-
-export const TransactionModel = model<Transaction>('Transaction', TransactionSchema);

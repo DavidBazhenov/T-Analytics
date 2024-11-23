@@ -8,14 +8,11 @@ import { JwtStrategy } from './jwt.strategy';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { UserSchema } from '../users/schemas/user.schema';
-import { WalletSchema } from '../wallets/schemas/wallet.schema';
-import { TransactionSchema } from '../transactions/schemas/transaction.schema';
+
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },
-      { name: 'Wallet', schema: WalletSchema },
-      { name: 'Transaction', schema: TransactionSchema },
     ]),
     UserModule,
     JwtModule.register({

@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
-import { CategoryModule } from './categories/categories.module';
 import { WalletModule } from './wallets/wallet.module';
 import { TransactionsModule } from './transactions/transactions.module';
 
@@ -12,7 +11,6 @@ import { TransactionsModule } from './transactions/transactions.module';
     UserModule,
     AuthModule,
     WalletModule,
-    CategoryModule,
     TransactionsModule
   ],
 })
