@@ -1,9 +1,10 @@
 import { Controller, Get, UseGuards, Req, Put, Body } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { access } from 'fs';
 import { UpdateUserDto } from './dto/user-update.dto';
+import { CreateUserDto } from './dto/user-create.dto';
 
 @ApiTags('Users') // Группировка эндпоинтов в секцию "Users" в Swagger
 @Controller('users')
@@ -17,6 +18,7 @@ export class UserController {
     summary: 'Get the current authenticated user',
     description: 'Use Bearer Token in Authorization header to get this response',
   }) // Описание операции
+  @ApiBody({ type: CreateUserDto, description: 'Data to update user' })
   @ApiResponse({
     status: 200,
     description: 'Successfully retrieved the current user data',
@@ -68,6 +70,7 @@ export class UserController {
     summary: 'Edit the current authenticated user data',
     description: 'Update the user data. Authorization header with Bearer Token is required.',
   })
+  @ApiBody({ type: UpdateUserDto, description: 'Data to update user' })
   @ApiResponse({
     status: 200,
     description: 'Successfully updated the user data',
@@ -84,6 +87,7 @@ export class UserController {
       },
     },
   })
+
   @ApiResponse({
     status: 400,
     description: 'Bad Request - Invalid data',

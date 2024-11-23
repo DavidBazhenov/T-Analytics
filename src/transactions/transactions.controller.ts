@@ -10,7 +10,6 @@ import { User } from '../auth/user.decorator';
 export class TransactionController {
     constructor(private readonly transactionService: TransactionService) { }
 
-
     @Post()
     @ApiBearerAuth()
     @ApiOperation({ summary: 'Create a new transaction' })

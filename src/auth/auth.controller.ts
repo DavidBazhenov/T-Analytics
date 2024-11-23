@@ -19,9 +19,7 @@ export class AuthController {
             example: {
                 success: true,
                 data: {
-                    id: '60f7c56f8b8e3b001c8d5647',
-                    name: 'John Doe',
-                    email: 'johndoe@example.com',
+                    accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
                 },
                 error: '',
             },
@@ -85,12 +83,6 @@ export class AuthController {
                 success: true,
                 data: {
                     accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-                    user: {
-                        id: 'abc123',
-                        name: 'Fake User',
-                        phone: '+1234567890',
-                        email: 'fake@example.com',
-                    },
                 },
                 error: '',
             },
