@@ -11,8 +11,7 @@ enum RootTabBarItem: Int, CaseIterable {
     
     case operations
     case wallets
-    case ai
-    case notifications
+    case plan
     case profile
     
     fileprivate var params: (title: String.Root, image: AppImage) {
@@ -21,10 +20,8 @@ enum RootTabBarItem: Int, CaseIterable {
             return (.rootOperationsTitle, .rootOperations)
         case .wallets:
             return (.rootWalletsTitle, .rootWallets)
-        case .ai:
-            return (.rootChatBotTitle, .rootAi)
-        case .notifications:
-            return (.rootNotificationsTitle, .rootNotifications)
+        case .plan:
+            return (.rootPlanTitle, .rootPlan)
         case .profile:
             return (.rootProfileTitle, .rootProfile)
         }

@@ -121,6 +121,7 @@ PODS:
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
+  - PieCharts (0.0.7)
   - PKHUD (5.3.0)
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
@@ -138,6 +139,7 @@ PODS:
   - SVProgressHUD (2.3.1):
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
+  - SwiftCharts (0.6.5)
   - TinyConstraints (4.0.2)
   - Toast-Swift (5.1.1)
   - "UIViewController+KeyboardAnimation (1.3)"
@@ -148,12 +150,14 @@ DEPENDENCIES:
   - Firebase/Crashlytics (= 11.0.0)
   - FloatingPanel (= 2.8.5)
   - Moya/Combine (= 15.0.0)
+  - PieCharts
   - PKHUD (= 5.3.0)
   - RxCocoa (= 6.7.1)
   - RxSwift (= 6.7.1)
   - ScrollableGraphView
   - SDWebImage (= 5.19.6)
   - SVProgressHUD (= 2.3.1)
+  - SwiftCharts (= 0.6.5)
   - TinyConstraints (= 4.0.2)
   - Toast-Swift (= 5.1.1)
   - "UIViewController+KeyboardAnimation (= 1.3)"
@@ -177,6 +181,7 @@ SPEC REPOS:
     - GoogleUtilities
     - Moya
     - nanopb
+    - PieCharts
     - PKHUD
     - PromisesObjC
     - PromisesSwift
@@ -186,6 +191,7 @@ SPEC REPOS:
     - ScrollableGraphView
     - SDWebImage
     - SVProgressHUD
+    - SwiftCharts
     - TinyConstraints
     - Toast-Swift
     - "UIViewController+KeyboardAnimation"
@@ -208,6 +214,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
+  PieCharts: 30e50dfa7dc19e5b84e9878d32089673ef5d0453
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
@@ -217,10 +224,11 @@ SPEC CHECKSUMS:
   ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
   SDWebImage: a79252b60f4678812d94316c91da69ec83089c9f
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
+  SwiftCharts: 2e755ea292f0b87d3e4b2c1eb5afc080a20cdc15
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
   "UIViewController+KeyboardAnimation": 4c6000b4a2e450a6105f007f96bb7142aebed220
 
-PODFILE CHECKSUM: 2e119d21e2a8c409bd5183144ec80f5febd81ab2
+PODFILE CHECKSUM: e086de7d8a70437fc4281dad0c7e3215ef6233db
 
 COCOAPODS: 1.16.2

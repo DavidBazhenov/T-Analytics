@@ -12,13 +12,11 @@ fileprivate extension RootTabBarItem {
     var viewController: UIViewController {
         switch self {
         case .operations:
-            return IntroViewController()
+            return ControllerCreator.createOperations()
         case .wallets:
             return ControllerCreator.createWallet()
-        case .ai:
-            return IntroViewController()
-        case .notifications:
-            return IntroViewController()
+        case .plan:
+            return ControllerCreator.createPlan()
         case .profile:
             return ControllerCreator.createProfile()
         }

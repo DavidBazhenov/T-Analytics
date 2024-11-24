@@ -13,7 +13,7 @@ enum AppImage: String {
     case rootOperations
     case rootWallets
     case rootAi
-    case rootNotifications
+    case rootPlan
     case rootProfile
     
     //Profile
@@ -41,6 +41,9 @@ enum AppImage: String {
     case walletCardIcon
     case walletCashIcon
     case walletReportIcon
+    
+    //Create Operation
+    case createOperation
     
     //Sf images
     case sfClose = "xmark"

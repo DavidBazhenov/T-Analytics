@@ -19,6 +19,8 @@ target 'cybergarden2024' do
   pod 'SVProgressHUD', '2.3.1'
   pod 'RxCocoa', '6.7.1'
   pod 'ScrollableGraphView'
+  pod 'SwiftCharts', '0.6.5'
+  pod 'PieCharts'
 end
 
 post_install do |installer|

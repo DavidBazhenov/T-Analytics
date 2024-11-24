@@ -50,7 +50,6 @@
 		DDF015352CF0B92F003C523A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015342CF0B92B003C523A /* ViewController.swift */; };
 		DDF015372CF0BAD5003C523A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015362CF0BACF003C523A /* IntroViewController.swift */; };
 		DDF015392CF0BAFD003C523A /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015382CF0BAFC003C523A /* AuthorizationViewController.swift */; };
-		DDF0153B2CF0BB13003C523A /* CreateWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF0153A2CF0BB0E003C523A /* CreateWalletViewController.swift */; };
 		DDF0153E2CF0C478003C523A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDF0153C2CF0C478003C523A /* Localizable.strings */; };
 		DDF015472CF0F97D003C523A /* InterDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDF015442CF0F97D003C523A /* InterDisplay-Medium.ttf */; };
 		DDF015482CF0F97D003C523A /* InterDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDF015452CF0F97D003C523A /* InterDisplay-Regular.ttf */; };
@@ -95,6 +94,31 @@
 		DDF0159E2CF224C7003C523A /* ModalPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF0159D2CF224C6003C523A /* ModalPanelLayout.swift */; };
 		DDF015A12CF224FA003C523A /* CreateWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015A02CF224F6003C523A /* CreateWallet.swift */; };
 		DDF015A32CF23437003C523A /* WalletViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015A22CF2342D003C523A /* WalletViewCell.swift */; };
+		DDF015A52CF24C79003C523A /* OperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015A42CF24C71003C523A /* OperationViewController.swift */; };
+		DDF015A82CF24C88003C523A /* OperationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015A72CF24C88003C523A /* OperationView.swift */; };
+		DDF015AA2CF24C8E003C523A /* OperationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015A92CF24C8C003C523A /* OperationViewModel.swift */; };
+		DDF015AC2CF2588E003C523A /* OperationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015AB2CF25881003C523A /* OperationViewCell.swift */; };
+		DDF015AE2CF260F8003C523A /* OperationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015AD2CF260F7003C523A /* OperationHeaderView.swift */; };
+		DDF015B02CF26107003C523A /* RoundedSectionBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015AF2CF26107003C523A /* RoundedSectionBackgroundView.swift */; };
+		DDF015B62CF27399003C523A /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015B52CF27398003C523A /* DatePickerViewController.swift */; };
+		DDF015B82CF27D15003C523A /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015B72CF27D14003C523A /* GraphView.swift */; };
+		DDF015BF2CF28FBA003C523A /* CreateOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015BE2CF28FBA003C523A /* CreateOperationViewController.swift */; };
+		DDF015C02CF28FBA003C523A /* CreateOperationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015BD2CF28FBA003C523A /* CreateOperationView.swift */; };
+		DDF015C12CF28FBA003C523A /* CreateOperationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015BC2CF28FBA003C523A /* CreateOperationViewModel.swift */; };
+		DDF015C32CF292DB003C523A /* CategoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015C22CF292DA003C523A /* CategoryHelper.swift */; };
+		DDF015C82CF2DF80003C523A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015C72CF2DF6B003C523A /* ReportViewController.swift */; };
+		DDF015CA2CF2DF8A003C523A /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015C92CF2DF85003C523A /* ReportViewModel.swift */; };
+		DDF015CC2CF2DF91003C523A /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015CB2CF2DF8D003C523A /* ReportView.swift */; };
+		DDF015CE2CF2E3A4003C523A /* ReportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015CD2CF2E39F003C523A /* ReportViewCell.swift */; };
+		DDF015D02CF2ED39003C523A /* ReportDoughnutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015CF2CF2ED39003C523A /* ReportDoughnutChartView.swift */; };
+		DDF015D32CF314BE003C523A /* PredictModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015D22CF314B2003C523A /* PredictModel.swift */; };
+		DDF015D52CF314D6003C523A /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015D42CF314D2003C523A /* PredictViewController.swift */; };
+		DDF015D72CF31530003C523A /* PredictViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015D62CF3152F003C523A /* PredictViewModel.swift */; };
+		DDF015D92CF3161D003C523A /* PredictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015D82CF3161D003C523A /* PredictView.swift */; };
+		DDF015DB2CF31A17003C523A /* PredictGistogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015DA2CF31A11003C523A /* PredictGistogramView.swift */; };
+		DDF015DD2CF32E6F003C523A /* ChartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015DC2CF32E6E003C523A /* ChartPageViewController.swift */; };
+		DDF015FF2CF3415F003C523A /* WalletHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF015FE2CF3415E003C523A /* WalletHeaderView.swift */; };
+		DDF016012CF34177003C523A /* WalletButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF016002CF34177003C523A /* WalletButtonsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,7 +169,6 @@
 		DDF015342CF0B92B003C523A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DDF015362CF0BACF003C523A /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		DDF015382CF0BAFC003C523A /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
-		DDF0153A2CF0BB0E003C523A /* CreateWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletViewController.swift; sourceTree = "<group>"; };
 		DDF0153D2CF0C478003C523A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DDF0153F2CF0F97D003C523A /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		DDF015402CF0F97D003C523A /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
@@ -190,6 +213,31 @@
 		DDF0159D2CF224C6003C523A /* ModalPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPanelLayout.swift; sourceTree = "<group>"; };
 		DDF015A02CF224F6003C523A /* CreateWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWallet.swift; sourceTree = "<group>"; };
 		DDF015A22CF2342D003C523A /* WalletViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewCell.swift; sourceTree = "<group>"; };
+		DDF015A42CF24C71003C523A /* OperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationViewController.swift; sourceTree = "<group>"; };
+		DDF015A72CF24C88003C523A /* OperationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationView.swift; sourceTree = "<group>"; };
+		DDF015A92CF24C8C003C523A /* OperationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationViewModel.swift; sourceTree = "<group>"; };
+		DDF015AB2CF25881003C523A /* OperationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationViewCell.swift; sourceTree = "<group>"; };
+		DDF015AD2CF260F7003C523A /* OperationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationHeaderView.swift; sourceTree = "<group>"; };
+		DDF015AF2CF26107003C523A /* RoundedSectionBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSectionBackgroundView.swift; sourceTree = "<group>"; };
+		DDF015B52CF27398003C523A /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		DDF015B72CF27D14003C523A /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		DDF015BC2CF28FBA003C523A /* CreateOperationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOperationViewModel.swift; sourceTree = "<group>"; };
+		DDF015BD2CF28FBA003C523A /* CreateOperationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOperationView.swift; sourceTree = "<group>"; };
+		DDF015BE2CF28FBA003C523A /* CreateOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOperationViewController.swift; sourceTree = "<group>"; };
+		DDF015C22CF292DA003C523A /* CategoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHelper.swift; sourceTree = "<group>"; };
+		DDF015C72CF2DF6B003C523A /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		DDF015C92CF2DF85003C523A /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		DDF015CB2CF2DF8D003C523A /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		DDF015CD2CF2E39F003C523A /* ReportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewCell.swift; sourceTree = "<group>"; };
+		DDF015CF2CF2ED39003C523A /* ReportDoughnutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDoughnutChartView.swift; sourceTree = "<group>"; };
+		DDF015D22CF314B2003C523A /* PredictModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictModel.swift; sourceTree = "<group>"; };
+		DDF015D42CF314D2003C523A /* PredictViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
+		DDF015D62CF3152F003C523A /* PredictViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictViewModel.swift; sourceTree = "<group>"; };
+		DDF015D82CF3161D003C523A /* PredictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictView.swift; sourceTree = "<group>"; };
+		DDF015DA2CF31A11003C523A /* PredictGistogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictGistogramView.swift; sourceTree = "<group>"; };
+		DDF015DC2CF32E6E003C523A /* ChartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPageViewController.swift; sourceTree = "<group>"; };
+		DDF015FE2CF3415E003C523A /* WalletHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHeaderView.swift; sourceTree = "<group>"; };
+		DDF016002CF34177003C523A /* WalletButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletButtonsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,9 +296,11 @@
 			isa = PBXGroup;
 			children = (
 				DD62E33E2CEA7C4F00FA4AFC /* Extensions */,
+				DDF015DF2CF33FC2003C523A /* Models */,
 				DD62E31D2CEA7BE200FA4AFC /* AppOrientationHelper.swift */,
 				DD62E3662CEA831400FA4AFC /* AirDropOnlyActivityItemSource.swift */,
 				DDF015322CF0B77E003C523A /* ControllerCreator.swift */,
+				DDF015C22CF292DA003C523A /* CategoryHelper.swift */,
 				DDF0155E2CF12602003C523A /* ViewModel.swift */,
 				DDF015622CF126BF003C523A /* UserDefaultsHelper.swift */,
 				DDF015342CF0B92B003C523A /* ViewController.swift */,
@@ -280,6 +330,10 @@
 		DD4937EE2CEA31500058B42A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				DDF015D12CF314AB003C523A /* Predict */,
+				DDF015C62CF2DF61003C523A /* Report */,
+				DDF015BB2CF28FB6003C523A /* Create Operation */,
+				DDF015A62CF24C7C003C523A /* Operation */,
 				DDF0158D2CF204CD003C523A /* Wallet */,
 				DDF015852CF18AEA003C523A /* T-ID Authorization */,
 				DDF0157E2CF172C7003C523A /* Edit Profile */,
@@ -305,6 +359,8 @@
 		DD4937F02CEA31870058B42A /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDF015B52CF27398003C523A /* DatePickerViewController.swift */,
+				DDF015AF2CF26107003C523A /* RoundedSectionBackgroundView.swift */,
 				DDF0159D2CF224C6003C523A /* ModalPanelLayout.swift */,
 				DD62E35E2CEA827000FA4AFC /* WhiteToastView.swift */,
 				DD62E3602CEA828500FA4AFC /* ViewsFactory.swift */,
@@ -382,9 +438,8 @@
 		DDF0152F2CF0B6B5003C523A /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				DDF015FC2CF3408B003C523A /* VC */,
 				DDF0154F2CF0FCE2003C523A /* Views */,
-				DDF015382CF0BAFC003C523A /* AuthorizationViewController.swift */,
-				DDF0155A2CF12347003C523A /* AuthorizationViewModel.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -392,7 +447,7 @@
 		DDF015302CF0B6EA003C523A /* Create Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				DDF0153A2CF0BB0E003C523A /* CreateWalletViewController.swift */,
+				DDF015A02CF224F6003C523A /* CreateWallet.swift */,
 			);
 			path = "Create Wallet";
 			sourceTree = "<group>";
@@ -409,11 +464,9 @@
 		DDF015682CF15345003C523A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				DDF015F72CF34089003C523A /* VM */,
+				DDF015F82CF34089003C523A /* VC */,
 				DDF0158C2CF1DEDE003C523A /* Views */,
-				DDF015732CF162FB003C523A /* ProfileSectionHelper.swift */,
-				DDF0156F2CF157AE003C523A /* ProfileModel.swift */,
-				DDF0156D2CF153F6003C523A /* ProfileViewModel.swift */,
-				DDF015692CF1538C003C523A /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -421,9 +474,9 @@
 		DDF0157E2CF172C7003C523A /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
-				DDF0157F2CF172D1003C523A /* EditProfileViewController.swift */,
-				DDF015812CF172D3003C523A /* EditProfileView.swift */,
-				DDF015832CF172D6003C523A /* EditProfileViewModel.swift */,
+				DDF015FD2CF340BB003C523A /* View */,
+				DDF015F52CF34087003C523A /* VM */,
+				DDF015F62CF34087003C523A /* VC */,
 			);
 			path = "Edit Profile";
 			sourceTree = "<group>";
@@ -431,9 +484,9 @@
 		DDF015852CF18AEA003C523A /* T-ID Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				DDF015862CF18B0A003C523A /* TIDAuthorizationViewController.swift */,
-				DDF015872CF18B0A003C523A /* TIDAuthorizationViewModel.swift */,
-				DDF0158A2CF18B0E003C523A /* TIDAuthorizationView.swift */,
+				DDF015EA2CF3404B003C523A /* VM */,
+				DDF015E92CF34047003C523A /* VC */,
+				DDF015E82CF3403E003C523A /* View */,
 			);
 			path = "T-ID Authorization";
 			sourceTree = "<group>";
@@ -450,16 +503,259 @@
 		DDF0158D2CF204CD003C523A /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				DDF015A22CF2342D003C523A /* WalletViewCell.swift */,
-				DDF015A02CF224F6003C523A /* CreateWallet.swift */,
-				DDF0159B2CF21E36003C523A /* MultiplePlotsGraphView.swift */,
-				DDF015972CF20736003C523A /* WalletModel.swift */,
-				DDF015992CF20745003C523A /* TransactionModel.swift */,
-				DDF015952CF20566003C523A /* WalletView.swift */,
-				DDF015932CF20522003C523A /* WalletViewModel.swift */,
-				DDF0158E2CF20500003C523A /* WalletViewController.swift */,
+				DDF015EB2CF3404F003C523A /* VM */,
+				DDF015EC2CF3404F003C523A /* VC */,
+				DDF015DE2CF33FB4003C523A /* View */,
 			);
 			path = Wallet;
+			sourceTree = "<group>";
+		};
+		DDF015A62CF24C7C003C523A /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015ED2CF34050003C523A /* VM */,
+				DDF015EE2CF34050003C523A /* VC */,
+				DDF015E02CF33FEA003C523A /* View */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
+		DDF015BB2CF28FB6003C523A /* Create Operation */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015EF2CF34051003C523A /* VM */,
+				DDF015F02CF34051003C523A /* VC */,
+				DDF015E12CF33FF8003C523A /* View */,
+			);
+			path = "Create Operation";
+			sourceTree = "<group>";
+		};
+		DDF015C62CF2DF61003C523A /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015F12CF34051003C523A /* VM */,
+				DDF015F22CF34051003C523A /* VC */,
+				DDF015E52CF3400C003C523A /* View */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		DDF015D12CF314AB003C523A /* Predict */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015F42CF34052003C523A /* VC */,
+				DDF015E72CF34028003C523A /* View */,
+			);
+			path = Predict;
+			sourceTree = "<group>";
+		};
+		DDF015DE2CF33FB4003C523A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015FE2CF3415E003C523A /* WalletHeaderView.swift */,
+				DDF016002CF34177003C523A /* WalletButtonsView.swift */,
+				DDF015A22CF2342D003C523A /* WalletViewCell.swift */,
+				DDF0159B2CF21E36003C523A /* MultiplePlotsGraphView.swift */,
+				DDF015952CF20566003C523A /* WalletView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDF015DF2CF33FC2003C523A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015D22CF314B2003C523A /* PredictModel.swift */,
+				DDF015D62CF3152F003C523A /* PredictViewModel.swift */,
+				DDF015C92CF2DF85003C523A /* ReportViewModel.swift */,
+				DDF015972CF20736003C523A /* WalletModel.swift */,
+				DDF015992CF20745003C523A /* TransactionModel.swift */,
+				DDF0156F2CF157AE003C523A /* ProfileModel.swift */,
+				DDF0155A2CF12347003C523A /* AuthorizationViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DDF015E02CF33FEA003C523A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015B72CF27D14003C523A /* GraphView.swift */,
+				DDF015AD2CF260F7003C523A /* OperationHeaderView.swift */,
+				DDF015A72CF24C88003C523A /* OperationView.swift */,
+				DDF015AB2CF25881003C523A /* OperationViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDF015E12CF33FF8003C523A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015BD2CF28FBA003C523A /* CreateOperationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDF015E52CF3400C003C523A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015CD2CF2E39F003C523A /* ReportViewCell.swift */,
+				DDF015CF2CF2ED39003C523A /* ReportDoughnutChartView.swift */,
+				DDF015CB2CF2DF8D003C523A /* ReportView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDF015E72CF34028003C523A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015D82CF3161D003C523A /* PredictView.swift */,
+				DDF015DA2CF31A11003C523A /* PredictGistogramView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDF015E82CF3403E003C523A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDF0158A2CF18B0E003C523A /* TIDAuthorizationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDF015E92CF34047003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015862CF18B0A003C523A /* TIDAuthorizationViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015EA2CF3404B003C523A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015872CF18B0A003C523A /* TIDAuthorizationViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		DDF015EB2CF3404F003C523A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015932CF20522003C523A /* WalletViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		DDF015EC2CF3404F003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF0158E2CF20500003C523A /* WalletViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015ED2CF34050003C523A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015A92CF24C8C003C523A /* OperationViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		DDF015EE2CF34050003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015A42CF24C71003C523A /* OperationViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015EF2CF34051003C523A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015BC2CF28FBA003C523A /* CreateOperationViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		DDF015F02CF34051003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015BE2CF28FBA003C523A /* CreateOperationViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015F12CF34051003C523A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015C72CF2DF6B003C523A /* ReportViewController.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		DDF015F22CF34051003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015DC2CF32E6E003C523A /* ChartPageViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015F42CF34052003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015D42CF314D2003C523A /* PredictViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015F52CF34087003C523A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015832CF172D6003C523A /* EditProfileViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		DDF015F62CF34087003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF0157F2CF172D1003C523A /* EditProfileViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015F72CF34089003C523A /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				DDF0156D2CF153F6003C523A /* ProfileViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		DDF015F82CF34089003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015732CF162FB003C523A /* ProfileSectionHelper.swift */,
+				DDF015692CF1538C003C523A /* ProfileViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015FC2CF3408B003C523A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015382CF0BAFC003C523A /* AuthorizationViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		DDF015FD2CF340BB003C523A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDF015812CF172D3003C523A /* EditProfileView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EB26EF5CEE5584B9C461C8BB /* Frameworks */ = {
@@ -622,12 +918,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF015A52CF24C79003C523A /* OperationViewController.swift in Sources */,
+				DDF015D32CF314BE003C523A /* PredictModel.swift in Sources */,
 				DDF0159E2CF224C7003C523A /* ModalPanelLayout.swift in Sources */,
 				DD4937E72CEA28F60058B42A /* AppDelegate.swift in Sources */,
 				DD62E31E2CEA7BE300FA4AFC /* AppOrientationHelper.swift in Sources */,
 				DD62E31C2CEA7BC000FA4AFC /* AppSetupManager.swift in Sources */,
 				DD4937E92CEA28F60058B42A /* RootTabBarViewController.swift in Sources */,
+				DDF015A82CF24C88003C523A /* OperationView.swift in Sources */,
+				DDF015D02CF2ED39003C523A /* ReportDoughnutChartView.swift in Sources */,
 				DD62E31A2CEA7BB600FA4AFC /* AppNavigator.swift in Sources */,
+				DDF015CE2CF2E3A4003C523A /* ReportViewCell.swift in Sources */,
 				DD62E33F2CEA7C4F00FA4AFC /* LocalizedStrings.swift in Sources */,
 				DDF015742CF16316003C523A /* ProfileSectionHelper.swift in Sources */,
 				DDF015572CF11EB3003C523A /* APIRequest.swift in Sources */,
@@ -637,6 +938,7 @@
 				DDF015962CF20568003C523A /* WalletView.swift in Sources */,
 				DDF015792CF16FDA003C523A /* WebViewController.swift in Sources */,
 				DDF015672CF14C08003C523A /* RootTabBarView.swift in Sources */,
+				DDF015B02CF26107003C523A /* RoundedSectionBackgroundView.swift in Sources */,
 				DD62E3422CEA7C4F00FA4AFC /* UIViewController+Convenience.swift in Sources */,
 				DD62E3442CEA7C4F00FA4AFC /* UINavigationBarAppearance+Convenience.swift in Sources */,
 				DD62E3452CEA7C4F00FA4AFC /* Colors.swift in Sources */,
@@ -647,26 +949,41 @@
 				DDF015702CF157B1003C523A /* ProfileModel.swift in Sources */,
 				DD62E3632CEA82A700FA4AFC /* Constants.swift in Sources */,
 				DDF015A12CF224FA003C523A /* CreateWallet.swift in Sources */,
+				DDF015CC2CF2DF91003C523A /* ReportView.swift in Sources */,
 				DDF015722CF158A4003C523A /* Dictionary+Extensions.swift in Sources */,
+				DDF015DB2CF31A17003C523A /* PredictGistogramView.swift in Sources */,
+				DDF015FF2CF3415F003C523A /* WalletHeaderView.swift in Sources */,
 				DD62E3492CEA7C4F00FA4AFC /* UIViewController+Containment.swift in Sources */,
 				DDF015352CF0B92F003C523A /* ViewController.swift in Sources */,
 				DD62E3612CEA828600FA4AFC /* ViewsFactory.swift in Sources */,
-				DDF0153B2CF0BB13003C523A /* CreateWalletViewController.swift in Sources */,
 				DD62E34A2CEA7C4F00FA4AFC /* NSError+Convenience.swift in Sources */,
+				DDF015C32CF292DB003C523A /* CategoryHelper.swift in Sources */,
 				DD62E34C2CEA7C4F00FA4AFC /* Fonts.swift in Sources */,
 				DDF0156E2CF153F6003C523A /* ProfileViewModel.swift in Sources */,
+				DDF015AC2CF2588E003C523A /* OperationViewCell.swift in Sources */,
 				DDF015A32CF23437003C523A /* WalletViewCell.swift in Sources */,
 				DDF0155F2CF12605003C523A /* ViewModel.swift in Sources */,
+				DDF015DD2CF32E6F003C523A /* ChartPageViewController.swift in Sources */,
 				DDF015822CF172D3003C523A /* EditProfileView.swift in Sources */,
+				DDF016012CF34177003C523A /* WalletButtonsView.swift in Sources */,
 				DDF015842CF172D6003C523A /* EditProfileViewModel.swift in Sources */,
 				DDF0159C2CF21E3A003C523A /* MultiplePlotsGraphView.swift in Sources */,
+				DDF015AA2CF24C8E003C523A /* OperationViewModel.swift in Sources */,
 				DDF015632CF126C8003C523A /* UserDefaultsHelper.swift in Sources */,
+				DDF015D92CF3161D003C523A /* PredictView.swift in Sources */,
 				DDF015532CF0FD05003C523A /* AuthorizationView.swift in Sources */,
 				DDF0158B2CF18B0E003C523A /* TIDAuthorizationView.swift in Sources */,
+				DDF015D52CF314D6003C523A /* PredictViewController.swift in Sources */,
 				DDF015592CF1204D003C523A /* APIConfiguration.swift in Sources */,
 				DDF015332CF0B784003C523A /* ControllerCreator.swift in Sources */,
 				DDF0158F2CF20507003C523A /* WalletViewController.swift in Sources */,
 				DDF015802CF172D1003C523A /* EditProfileViewController.swift in Sources */,
+				DDF015BF2CF28FBA003C523A /* CreateOperationViewController.swift in Sources */,
+				DDF015D72CF31530003C523A /* PredictViewModel.swift in Sources */,
+				DDF015C02CF28FBA003C523A /* CreateOperationView.swift in Sources */,
+				DDF015C82CF2DF80003C523A /* ReportViewController.swift in Sources */,
+				DDF015C12CF28FBA003C523A /* CreateOperationViewModel.swift in Sources */,
+				DDF015B82CF27D15003C523A /* GraphView.swift in Sources */,
 				DD62E35F2CEA827100FA4AFC /* WhiteToastView.swift in Sources */,
 				DD62E34D2CEA7C4F00FA4AFC /* UIViewController+Alerts.swift in Sources */,
 				DD62E34F2CEA7C4F00FA4AFC /* UIColor+Convenience.swift in Sources */,
@@ -674,15 +991,18 @@
 				DD62E3512CEA7C4F00FA4AFC /* String+Convenience.swift in Sources */,
 				DD62E3552CEA7C4F00FA4AFC /* FileManager+Convenience.swift in Sources */,
 				DDF015982CF20737003C523A /* WalletModel.swift in Sources */,
+				DDF015CA2CF2DF8A003C523A /* ReportViewModel.swift in Sources */,
 				DD62E3572CEA7C4F00FA4AFC /* Images.swift in Sources */,
 				DD62E3652CEA82E200FA4AFC /* UITableView+Convenience.swift in Sources */,
 				DDF015392CF0BAFD003C523A /* AuthorizationViewController.swift in Sources */,
+				DDF015B62CF27399003C523A /* DatePickerViewController.swift in Sources */,
 				DD62E3582CEA7C4F00FA4AFC /* UITabBarController+Convenience.swift in Sources */,
 				DDF015652CF13267003C523A /* UIViewController+Extensions.swift in Sources */,
 				DD62E3592CEA7C4F00FA4AFC /* Array+Convenience.swift in Sources */,
 				DDF015372CF0BAD5003C523A /* IntroViewController.swift in Sources */,
 				DDF0156C2CF153F0003C523A /* ProfileView.swift in Sources */,
 				DDF015772CF165E0003C523A /* ProfileTableViewCell.swift in Sources */,
+				DDF015AE2CF260F8003C523A /* OperationHeaderView.swift in Sources */,
 				DD62E35A2CEA7C4F00FA4AFC /* UIAlertAction+Convenience.swift in Sources */,
 				DDF015512CF0FCF7003C523A /* AuthorizationInputView.swift in Sources */,
 				DDF0156A2CF1538C003C523A /* ProfileViewController.swift in Sources */,

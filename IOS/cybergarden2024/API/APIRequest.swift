@@ -41,8 +41,11 @@ extension APIRequest {
                         if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                            let success = json["success"] as? Bool {
                             if success {
-                                let responseData = json["data"] as? [String: Any]
-                                observer.onNext(.success(responseData))
+                                if let responseData = json["data"] as? [String: Any] {
+                                    observer.onNext(.success(responseData))
+                                } else {
+                                    observer.onNext(.success(json))
+                                }
                             } else if let error = json["error"] as? String{
                                 observer.onNext(.failure(NSError.getErrorWithDescription(error)))
                             } else {

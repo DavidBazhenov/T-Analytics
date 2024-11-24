@@ -68,6 +68,23 @@ class ModalsBuilder {
         return buildPanel(contentVC: controller)
     }
     
+    static func buildDateModal(
+        dateRangePick: @escaping (Date?, Date?) -> Void
+    ) -> FloatingPanelController {
+        let controller = DatePickerViewController()
+        controller.onDateRangeSelected = dateRangePick
+        return buildPanel(contentVC: controller)
+    }
+    
+    static func buildCreateOperationModal(wallets: [WalletModel], onSuccess: (() -> Void)? = nil) -> FloatingPanelController {
+        let controller = CreateOperationViewController()
+        controller.onSuccess = onSuccess
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            controller.updateWallets(wallets: wallets)
+        }
+        return buildPanel(contentVC: controller)
+    }
+    
     private class func buildPanel(contentVC: UIViewController, canBeDismissedManually: Bool = true) -> FloatingPanelController {
         let fpc = FloatingPanelController()
         fpc.set(contentViewController: contentVC)

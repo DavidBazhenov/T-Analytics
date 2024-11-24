@@ -17,7 +17,7 @@ extension String {
         case rootOperationsTitle
         case rootWalletsTitle
         case rootChatBotTitle
-        case rootNotificationsTitle
+        case rootPlanTitle
         case rootProfileTitle
     }
     

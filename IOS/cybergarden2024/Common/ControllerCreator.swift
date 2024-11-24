@@ -21,16 +21,24 @@ class ControllerCreator {
         return AuthorizationViewController()
     }
     
-    static func createCreateWallet() -> ViewController {
-        return CreateWalletViewController()
-    }
-    
     static func createIntro() -> ViewController {
         return IntroViewController()
     }
     
     static func createProfile() -> ViewController {
         return ProfileViewController()
+    }
+    
+    static func createOperations() -> ViewController {
+        return OperationViewController()
+    }
+    
+    static func createReport() -> ViewController {
+        return ReportViewController()
+    }
+    
+    static func createPlan() -> ViewController {
+        return PredictViewController()
     }
     
 }

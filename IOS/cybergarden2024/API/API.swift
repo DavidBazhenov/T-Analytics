@@ -96,6 +96,17 @@ struct API {
             }
         }
         
+        struct deleteWallet: APIRequest {
+            let id: String
+            
+            var requestURL: String { return APIConfiguration.baseURL + "wallets/\(id)" }
+            var httpMethod: HTTPMethod { return .delete }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                return parameters
+            }
+        }
+        
         struct createWallet: APIRequest {
             let name: String
             let type: String
@@ -127,11 +138,59 @@ struct API {
             }
         }
         
-        struct createTransaction: APIRequest {
-            var requestURL: String { return APIConfiguration.baseURL + "transactions/getAllWalletsTransactions" }
+        struct gettAllTransactions: APIRequest {
+            var requestURL: String { return APIConfiguration.baseURL + "transactions/getAllTransactions" }
             var httpMethod: HTTPMethod { return .get }
             var parameters: [String: Any]? {
                 var parameters: [String: Any] = [:]
+                return parameters
+            }
+        }
+        
+        struct getPredictTransactions: APIRequest {
+            var requestURL: String { return APIConfiguration.baseURL + "transactions/getPredictTransactions" }
+            var httpMethod: HTTPMethod { return .get }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                return parameters
+            }
+        }
+        
+        struct getTransactionsByWalletFromId: APIRequest {
+            let id: String
+            
+            var requestURL: String { return APIConfiguration.baseURL + "transactions/getTransactionsByWalletFromId/\(id)" }
+            var httpMethod: HTTPMethod { return .get }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                return parameters
+            }
+        }
+        
+        struct createTransaction: APIRequest {
+            let userId: String
+            let walletFromId: String
+            let amount: Float
+            let type: String
+            let date: String
+            let description: String
+            let category: TransactionModel.Category
+            
+            var requestURL: String { return APIConfiguration.baseURL + "transactions" }
+            var httpMethod: HTTPMethod { return .post }
+            var parameters: [String: Any]? {
+                var parameters: [String: Any] = [:]
+                parameters["userId"] = userId
+                parameters["walletFromId"] = walletFromId
+                parameters["amount"] = amount
+                parameters["type"] = type
+                parameters["date"] = date
+                parameters["description"] = description
+                parameters["category"] = [
+                    "name": category.name,
+                    "icon": category.icon,
+                    "color": category.color
+                ]
                 return parameters
             }
         }
