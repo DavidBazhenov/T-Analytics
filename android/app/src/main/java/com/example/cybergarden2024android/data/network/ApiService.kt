@@ -2,8 +2,10 @@ package com.example.cybergarden2024android.data.network
 
 import android.icu.util.Currency
 import com.example.cybergarden2024android.data.network.models.AuthResponse
+import com.example.cybergarden2024android.data.network.models.Transaction
 import com.example.cybergarden2024android.data.network.models.Transactions
 import com.example.cybergarden2024android.data.network.models.Wallets
+import com.github.mikephil.charting.components.Description
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -32,6 +34,10 @@ interface ApiService {
 
     @POST("wallets")
     suspend fun createWallet(@Header("Authorization") authHeader: String, @Body request: Wallet): Response<Wallet>
+
+    @POST("transactions")
+    suspend fun createTransaction(@Header("Authorization") authHeader: String, @Body request: CreateCategory): Response<Transaction>
+
 
     @GET("wallets/findManyWallets")
     suspend fun getWallets(@Header("Authorization") authHeader: String): Response<Wallets>
@@ -74,5 +80,18 @@ data class Wallet(
     val type: String,
     val balance: Int,
     val currency: String
+)
+
+data class Category(
+    val name: String
+)
+
+data class CreateCategory(
+    val category: Category,
+    val walletFromId: String,
+    val amount: Double,
+    val type: String,
+    val date: String,
+    val description: String
 )
 

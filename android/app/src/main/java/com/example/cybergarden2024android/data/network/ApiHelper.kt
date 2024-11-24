@@ -1,6 +1,8 @@
 package com.example.cybergarden2024android.data.network
 
+import android.util.Log
 import com.example.cybergarden2024android.data.network.models.AuthResponse
+import com.example.cybergarden2024android.data.network.models.Transaction
 import com.example.cybergarden2024android.data.network.models.Transactions
 import com.example.cybergarden2024android.data.network.models.Wallets
 import retrofit2.Response
@@ -41,5 +43,11 @@ class ApiHelper(private val apiService: ApiService) {
 
     suspend fun getAllTransactions(accessToken: String): Response<Transactions> {
         return apiService.getAllTransactions(accessToken)
+    }
+
+    suspend fun createTransaction(categoryName: String, walletId: String, amount: Double, type: String, date: String, description: String, accessToken: String): Response<Transaction> {
+        val request = CreateCategory(category = Category(name = categoryName), walletFromId = walletId, amount = amount, type = type, date = date, description = description)
+        Log.i("Dibug1", request.toString())
+        return apiService.createTransaction(accessToken, request)
     }
 }

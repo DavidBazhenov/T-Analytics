@@ -36,7 +36,7 @@ class ItemWalletAdapter (private val items: List<ItemWallet>) : RecyclerView.Ada
         }
         holder.typeBg.setCardBackgroundColor(Color.parseColor(item.color))
         holder.name.text = item.name
-        holder.balance.text = item.balance.toString()
+        holder.balance.text = item.balance.toString() + ".0" + " " + item.currency
     }
 
     override fun getItemCount() = items.size

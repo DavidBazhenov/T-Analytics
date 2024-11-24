@@ -12,4 +12,9 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="CustomSpinnerDropdown">
+        <item name="android:background">@color/bluePrimary</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- Цвет текста в списке -->
+    </style>
+
 </resources>

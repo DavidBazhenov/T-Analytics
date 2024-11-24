@@ -41,8 +41,8 @@ class AuthTiDActivity : AppCompatActivity() {
         authViewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
 
         authViewModel.loginTIDResult.observe(this, Observer { result ->
+            Log.i("Dibug1", result.toString())
             result.onSuccess { user ->
-                Log.i("Dibug1", user.success.toString())
                 if (user.success) {
                     showError(false, "")
                     val sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE)
@@ -73,6 +73,11 @@ class AuthTiDActivity : AppCompatActivity() {
             } else {
                 showError(true, "Неверный номер")
             }
+        }
+
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
         }
 
         binding.phoneEditText.addTextChangedListener(object : TextWatcher {

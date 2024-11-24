@@ -8,4 +8,5 @@ data class ItemWallet(
     @SerializedName("name") val name: String,
     @SerializedName("balance") val balance: Int,
     @SerializedName("color") val color: String,
+    @SerializedName("currency") val currency: String,
 )

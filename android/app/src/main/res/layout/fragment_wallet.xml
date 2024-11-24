@@ -118,9 +118,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="17dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="40dp"
-            tools:listitem="@layout/item_wallet"
-            />
+            tools:listitem="@layout/item_wallet" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

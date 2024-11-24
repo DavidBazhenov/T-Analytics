@@ -29,9 +29,11 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import java.util.Locale
 
 class Wallet : Fragment(R.layout.fragment_wallet) {
     private var _binding: FragmentWalletBinding? = null
@@ -104,10 +106,10 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
 
         return binding.root
     }
+    
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Очищаем ссылку на binding, чтобы избежать утечек памяти
         _binding = null
     }
 
@@ -117,33 +119,20 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
     }
 
     private fun setupChart(lineChart: LineChart, transactions: List<ItemTransaction>, wallets: List<ItemWallet>) {
-        // Данные для графика
-//        val dataSet1 = createLineDataSet(
-//            data = listOf(Entry(0f, 100f), Entry(1f, 200f), Entry(2f, 150f), Entry(3f, 300f)),
-//            label = "Серия 1",
-//            color = Color.GREEN
-//        )
-//        val dataSet2 = createLineDataSet(
-//            data = listOf(Entry(0f, 50f), Entry(1f, 100f), Entry(2f, 120f), Entry(3f, 200f)),
-//            label = "Серия 2",
-//            color = Color.BLUE
-//        )
-//        val dataSet3 = createLineDataSet(
-//            data = listOf(Entry(0f, 20f), Entry(1f, 60f), Entry(2f, 80f), Entry(3f, 100f)),
-//            label = "Серия 3",
-//            color = Color.CYAN
-//        )
         val linedata = generateChartData(transactions, wallets)
 
         // Установка данных в график
         val lineData = LineData(linedata)
         lineChart.data = lineData
 
-        // Настройка осей
         val xAxis: XAxis = lineChart.xAxis
+        xAxis.axisMinimum = 0f
+        xAxis.axisMaximum = extractMonthsFromTransactions(transactions).size - 1.toFloat()
+        xAxis.granularity = 1f
+        xAxis.labelCount = extractMonthsFromTransactions(transactions).size - 1
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.textColor = Color.WHITE
-        xAxis.valueFormatter = MonthValueFormatter() // Кастомный формат
+        xAxis.valueFormatter = MonthValueFormatter(extractMonthsFromTransactions(transactions)) // Кастомный формат
         xAxis.setDrawGridLines(false)
 
         val yAxisLeft: YAxis = lineChart.axisLeft
@@ -174,12 +163,32 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
     }
 
     // Формат отображения месяцев
-    inner class MonthValueFormatter : com.github.mikephil.charting.formatter.ValueFormatter() {
-        private val months = listOf("Сент.", "Окт.", "Нояб.", "Дек.")
+    inner class MonthValueFormatter(private val months: List<String>) : com.github.mikephil.charting.formatter.ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
             return months.getOrNull(value.toInt()) ?: value.toString()
         }
     }
+
+    fun extractMonthsFromTransactions(transactions: List<ItemTransaction>): List<String> {
+        val dateFormatter = DateTimeFormatter.ISO_DATE_TIME
+        val outputFormatter = DateTimeFormatter.ofPattern("MMM''yy", Locale("ru"))
+
+        val months = transactions.mapNotNull { transaction ->
+            val dateStr = transaction.date as? String
+            try {
+                val localDate = LocalDate.parse(dateStr, dateFormatter)
+                localDate.format(outputFormatter).replaceFirstChar { char -> char.uppercaseChar() }
+            } catch (e: Exception) {
+                null // Пропускаем транзакции с некорректной датой
+            }
+        }.distinct() // Убираем дубли после форматирования
+            .sorted() // Сортируем строки по лексикографическому (хронологическому) порядку
+        
+
+        return months.reversed()
+    }
+
+
 
     fun showBottomSheetDialog(type: String, accessToken: String?) {
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
@@ -286,57 +295,46 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
 
     }
 
-    fun calculateMonthDifference(transactions: List<ItemTransaction>): Long {
-        val formatter = DateTimeFormatter.ISO_DATE_TIME
-
-        val minDate = transactions
-            .map { LocalDateTime.parse(it.date, formatter) }
-            .minOrNull() ?: throw IllegalArgumentException("No transactions found")
-
-        val maxDate = transactions
-            .map { LocalDateTime.parse(it.date, formatter) }
-            .maxOrNull() ?: throw IllegalArgumentException("No transactions found")
-
-        return ChronoUnit.MONTHS.between(minDate, maxDate)
-    }
-
     fun generateChartData(transactions: List<ItemTransaction>, wallets: List<ItemWallet>): List<LineDataSet> {
         val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
-        val groupedTransactions = mutableMapOf<String, MutableMap<String, Float>>() // walletId -> (date -> sum)
+        val monthFormatter = SimpleDateFormat("yyyy-MM")
 
-        // Группируем транзакции по кошелькам и датам
+        // Группируем транзакции по кошелькам и месяцам
+        val groupedTransactions = mutableMapOf<String, MutableMap<String, Float>>() // walletId -> (month -> sum)
+
         for (transaction in transactions) {
-            val date = dateFormatter.format(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(transaction.date))
+            val date = dateFormatter.parse(transaction.date)
+            val month = monthFormatter.format(date) // Преобразуем в год-месяц
             val walletId = transaction.walletId
             val amount = transaction.amount
 
-            // Инициализация для кошелька и даты
-            if (groupedTransactions[walletId] == null) {
-                groupedTransactions[walletId] = mutableMapOf()
-            }
-            groupedTransactions[walletId]?.merge(date, amount.toFloat()) { old, new -> old + new }
+            // Инициализация для кошелька и месяца
+            groupedTransactions.computeIfAbsent(walletId) { mutableMapOf() }
+            groupedTransactions[walletId]?.merge(month, amount.toFloat()) { old, new -> old + new }
         }
+
+        // Список всех уникальных месяцев для оси X
+        val uniqueMonths = groupedTransactions.values
+            .flatMap { it.keys }
+            .distinct()
+            .sorted()
 
         // Создаем LineDataSet для каждого кошелька
         val dataSets = mutableListOf<LineDataSet>()
 
-        for ((walletId, dateSums) in groupedTransactions) {
+        for ((walletId, monthSums) in groupedTransactions) {
             val walletName = wallets.find { it.id == walletId }?.name ?: continue
-            val sortedEntries = dateSums.entries
-                .sortedBy { it.key }  // Сортировка по датам
-                .mapIndexed { index, entry ->
-                    Entry(index.toFloat(), entry.value)
-                }
+            val walletColor = wallets.find { it.id == walletId }?.color ?: continue
+
+            val sortedEntries = uniqueMonths.mapIndexedNotNull { index, month ->
+                val value = monthSums[month] ?: 0f // Если для месяца нет данных, берем 0
+                Entry(index.toFloat(), value) // Индекс месяца на оси X
+            }
 
             val dataSet = createLineDataSet(
                 data = sortedEntries,
                 label = walletName,
-                color = when(walletName) {
-                    "Beneath" -> Color.GREEN
-                    "Vsdvsf" -> Color.BLUE
-                    "Ewqewq" -> Color.CYAN
-                    else -> Color.RED
-                }
+                color = Color.parseColor(walletColor)
             )
 
             dataSets.add(dataSet)
@@ -344,4 +342,5 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
 
         return dataSets
     }
+
 }
