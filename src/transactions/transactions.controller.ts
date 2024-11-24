@@ -20,17 +20,14 @@ export class TransactionController {
             example: {
                 summary: 'Create an expense transaction',
                 value: {
-                    userId: '63f6a5e77c840f2c7bcf5e6e',
                     category: {
-                        name: 'Groceries',
-                        icon: '🛒',
-                        color: '#FF5722',
+                        name: "Food"
                     },
-                    walletFromId: '63f6a5e77c840f2c7bcf5e70',
+                    walletFromId: "6742020e83be8fb5540d0350",
                     amount: 500,
-                    type: 'expense',
-                    date: '2024-11-01T10:00:00Z',
-                    description: 'Dinner at a restaurant',
+                    type: "expense",
+                    date: "2024-11-01T10:00:00Z",
+                    description: "Dinner at a restaurant"
                 },
             },
         },
@@ -90,9 +87,7 @@ export class TransactionController {
                 summary: 'Update a transaction',
                 value: {
                     category: {
-                        name: 'Groceries',
-                        icon: '🛒',
-                        color: '#FF5722',
+                        name: 'Groceries'
                     },
                     amount: 700,
                     description: 'Updated transaction description',

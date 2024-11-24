@@ -125,7 +125,23 @@ export class TransactionService {
     const newTransactionData = {
       ...data,
       date: data.date || new Date().toISOString().split('T')[0],
+      category: this.createCategory(data.category.name),
     };
+
+    const { walletFromId, walletToId, amount, type } = transaction;
+    const walletFrom = walletFromId
+      ? await this.walletModel.findById(walletFromId)
+      : null;
+
+    if (type === 'expense' && walletFrom) {
+      walletFrom.balance += amount;
+      walletFrom.balance -= newTransactionData.amount;
+      await walletFrom.save();
+    } else if (type === 'income' && walletFrom) {
+      walletFrom.balance -= amount;
+      walletFrom.balance += newTransactionData.amount;
+      await walletFrom.save();
+    }
     return { data: { newTransactionData }, error: '', success: true };
   }
 
@@ -218,9 +234,6 @@ export class TransactionService {
 
     try {
       const transactions = await this.transactionModel.find(query).exec();
-
-
-
       const transactionsArray = Object.values(transactions).map(walletTransactions => {
         return {
           Date: walletTransactions.date.toISOString().split('T')[0],
@@ -228,9 +241,7 @@ export class TransactionService {
           Category: walletTransactions.category.name, // Поле категории транзакции
         }
       });
-      console.log(transactionsArray);
 
-      // Отправляем данные на сервер для предсказания
       const response = await axios.post('http://194.87.202.4:8000/predict/', transactionsArray);
       const predictedData = response.data.predictions.map((item: any) => ({
         date: item.Date,

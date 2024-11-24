@@ -28,10 +28,13 @@ export class WalletController {
             example: {
                 success: true,
                 data: {
+                    name: 'My wallet',
                     id: '64d1f5c7f3b7c800168ad39b',
                     userId: '64d1f5c7f3b7c800168ad38a',
                     balance: 1000,
+                    type: 'cash',
                     currency: 'USD',
+                    color: '#FF5722',
                     createdAt: '2024-11-20T08:20:34.567Z',
                     updatedAt: '2024-11-20T08:20:34.567Z',
                 },
@@ -75,22 +78,35 @@ export class WalletController {
         description: 'List of wallets retrieved successfully',
         schema: {
             example: {
-                success: true,
-                data: [
-                    {
-                        id: '64d1f5c7f3b7c800168ad39b',
-                        userId: '64d1f5c7f3b7c800168ad38a',
-                        balance: 1000,
-                        currency: 'USD',
-                    },
-                    {
-                        id: '64d1f5c7f3b7c800168ad39c',
-                        userId: '64d1f5c7f3b7c800168ad38a',
-                        balance: 500,
-                        currency: 'EUR',
-                    },
-                ],
-                error: '',
+                "data": {
+                    "wallets": [
+                        {
+                            "_id": "6742020e83be8fb5540d0350",
+                            "userId": "674201f583be8fb5540d034b",
+                            "name": "Beneath",
+                            "type": "bank",
+                            "balance": 47057,
+                            "currency": "RUB",
+                            "color": "#cb4201",
+                            "createdAt": "2024-11-23T16:25:50.227Z",
+                            "updatedAt": "2024-11-23T16:25:50.227Z",
+                        },
+                        {
+                            "_id": "6742021183be8fb5540d0354",
+                            "userId": "674201f583be8fb5540d034b",
+                            "name": "Vsdvsf",
+                            "type": "cash",
+                            "balance": 1500,
+                            "currency": "EUR",
+                            "color": "#67a111",
+                            "createdAt": "2024-11-23T16:25:53.645Z",
+                            "updatedAt": "2024-11-23T16:25:53.645Z",
+                        }
+                    ],
+                    "summ": 290390834.09999996
+                },
+                "error": "",
+                "success": true
             },
         },
     })
@@ -143,8 +159,11 @@ export class WalletController {
                 data: {
                     id: '64d1f5c7f3b7c800168ad39b',
                     userId: '64d1f5c7f3b7c800168ad38a',
+                    name: 'Beneath',
+                    type: 'bank',
                     balance: 1000,
                     currency: 'USD',
+                    color: '#cb4201',
                     createdAt: '2024-11-20T08:20:34.567Z',
                     updatedAt: '2024-11-20T08:20:34.567Z',
                 },
@@ -191,9 +210,13 @@ export class WalletController {
                 data: {
                     id: '64d1f5c7f3b7c800168ad39b',
                     userId: '64d1f5c7f3b7c800168ad38a',
-                    balance: 1200,
+                    name: 'Beneath',
+                    type: 'bank',
+                    balance: 1000,
                     currency: 'USD',
-                    updatedAt: '2024-11-20T08:30:34.567Z',
+                    color: '#cb4201',
+                    createdAt: '2024-11-20T08:20:34.567Z',
+                    updatedAt: '2024-11-20T08:20:34.567Z',
                 },
                 error: '',
             },
