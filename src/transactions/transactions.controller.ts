@@ -305,24 +305,30 @@ export class TransactionController {
         description: 'List of transactions retrieved successfully',
         schema: {
             example: {
-                success: true,
-                data: [
+                "data": [
                     {
-                        id: '63f6a5e77c840f2c7bcf5e71',
-                        userId: '63f6a5e77c840f2c7bcf5e6e',
-                        category: {
-                            name: 'Food',
-                            icon: '🛒',
-                            color: '#FF5722',
+                        "date": "2024-11-01",
+                        "amount": 530,
+                        "category": {
+                            "name": "Food",
+                            "icon": "🛒",
+                            "color": "#FF5722"
                         },
-                        walletFromId: '63f6a5e77c840f2c7bcf5e70',
-                        amount: 500,
-                        type: 'expense',
-                        date: '2024-11-01T10:00:00Z',
-                        description: 'Dinner at a restaurant',
+                        "type": "expense"
+                    },
+                    {
+                        "date": "2024-11-01",
+                        "amount": 530,
+                        "category": {
+                            "name": "Food",
+                            "icon": "🛒",
+                            "color": "#FF5722"
+                        },
+                        "type": "expense"
                     },
                 ],
-                error: '',
+                "error": "",
+                "success": true
             },
         },
     })
@@ -413,7 +419,7 @@ export class TransactionController {
             );
             return transactions;
         } catch (error) {
-            
+
         }
     }
 

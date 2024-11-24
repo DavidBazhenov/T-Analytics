@@ -256,7 +256,7 @@ export class TransactionService {
       const predictedData = response.data.predictions.map((item: any) => ({
         date: item.Date,
         amount: item.Amount < 0 ? item.Amount * -1 : item.Amount,
-        category: item.Category,
+        category: this.createCategory(item.Category),
         type: item.Amount < 0 ? 'expense' : 'income',
       }));
       return {
