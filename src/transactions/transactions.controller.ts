@@ -42,7 +42,7 @@ export class TransactionController {
                     id: '63f6a5e77c840f2c7bcf5e71',
                     userId: '63f6a5e77c840f2c7bcf5e6e',
                     category: {
-                        name: 'Groceries',
+                        name: 'Food',
                         icon: '🛒',
                         color: '#FF5722',
                     },
@@ -87,7 +87,7 @@ export class TransactionController {
                 summary: 'Update a transaction',
                 value: {
                     category: {
-                        name: 'Groceries'
+                        name: 'Food'
                     },
                     amount: 700,
                     description: 'Updated transaction description',
@@ -104,7 +104,7 @@ export class TransactionController {
                 data: {
                     id: '63f6a5e77c840f2c7bcf5e71',
                     category: {
-                        name: 'Groceries',
+                        name: 'Food',
                         icon: '🛒',
                         color: '#FF5722',
                     },
@@ -187,7 +187,7 @@ export class TransactionController {
         required: false,
         description: 'Filter transactions by category',
         example: {
-            name: 'Groceries',
+            name: 'Food',
             icon: '🛒',
             color: '#FF5722',
         },
@@ -204,7 +204,7 @@ export class TransactionController {
                         userId: '63f6a5e77c840f2c7bcf5e6e',
                         category:
                         {
-                            name: 'Groceries',
+                            name: 'Food',
                             icon: '🛒',
                             color: '#FF5722',
                         },
@@ -234,7 +234,7 @@ export class TransactionController {
         @Query('startDate') startDate?: string,
         @Query('endDate') endDate?: string,
         @Query('category') category?: {
-            name: 'Groceries',
+            name: 'Food',
             icon: '🛒',
             color: '#FF5722',
         },
@@ -264,7 +264,7 @@ export class TransactionController {
                         id: '63f6a5e77c840f2c7bcf5e71',
                         userId: '63f6a5e77c840f2c7bcf5e6e',
                         category: {
-                            name: 'Groceries',
+                            name: 'Food',
                             icon: '🛒',
                             color: '#FF5722',
                         },
@@ -311,7 +311,7 @@ export class TransactionController {
                         id: '63f6a5e77c840f2c7bcf5e71',
                         userId: '63f6a5e77c840f2c7bcf5e6e',
                         category: {
-                            name: 'Groceries',
+                            name: 'Food',
                             icon: '🛒',
                             color: '#FF5722',
                         },
