@@ -14,17 +14,31 @@ export class TransactionService {
   ) { }
 
   private createCategory(CategoryName: string): { name: string, icon: string, color: string } {
+    // Food", "Transport", "Entertainment", "Shopping", "Medical", "Dining_out", 
+    // "Miscellaneous", "Housing", "Gym", "Utilities", "Subscriptions", "Advance", "Salary"
     if (CategoryName === 'Food') {
       return {
         name: 'Food',
         icon: '🍔',
-        color: '#FF5722',
+        color: '#FFFF00',
       };
     } else if (CategoryName === 'Transport') {
       return {
         name: 'Transport',
         icon: '🚗',
+        color: '#FF0000',
+      };
+    } else if (CategoryName === 'Shopping') {
+      return {
+        name: 'Shopping',
+        icon: '🛍️',
         color: '#FF5722',
+      };
+    } else if (CategoryName === 'Medical') {
+      return {
+        name: 'Medical',
+        icon: '💊',
+        color: '#32CD32',
       };
     } else if (CategoryName === 'Entertainment') {
       return {
@@ -38,11 +52,47 @@ export class TransactionService {
         icon: '💸',
         color: '#FF5722',
       };
-    } else if (CategoryName === 'Salary') { // Исправлено из "name" на "CategoryName"
+    } else if (CategoryName === 'Salary') {
       return {
         name: 'Salary',
         icon: '💰',
         color: '#FF5722',
+      };
+    } else if (CategoryName === 'Dining_out') {
+      return {
+        name: 'Dining_out',
+        icon: '🍽️',
+        color: '#0000FF',
+      };
+    } else if (CategoryName === 'Miscellaneous') {
+      return {
+        name: 'Miscellaneous',
+        icon: '🧾',
+        color: '#FFFFFF',
+      };
+    } else if (CategoryName === 'Housing') {
+      return {
+        name: 'Housing',
+        icon: '🏠',
+        color: '#FFC0CB',
+      };
+    } else if (CategoryName === 'Gym') {
+      return {
+        name: 'Gym',
+        icon: '🏋️',
+        color: '#808000',
+      };
+    } else if (CategoryName === 'Utilities') {
+      return {
+        name: 'Utilities',
+        icon: '🛠️',
+        color: '#DDA0DD',
+      };
+    } else if (CategoryName === 'Subscriptions') {
+      return {
+        name: 'Subscriptions',
+        icon: '📦',
+        color: '#C6E2B5',
       };
     }
     // Значение по умолчанию
