@@ -307,7 +307,7 @@ export class TransactionService {
         date: item.Date,
         amount: item.Amount < 0 ? item.Amount * -1 : item.Amount,
         category: this.createCategory(item.Category),
-        type: item.Amount < 0 ? 'expense' : 'income',
+        type: (item.Category === "Salary" || item.Category === "Advance") ? 'income' : 'expense',
       }));
       return {
         data: predictedData,
