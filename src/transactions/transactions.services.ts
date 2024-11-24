@@ -229,6 +229,16 @@ export class TransactionService {
     }
   }
 
+  async getTransactionsByWalletFromId(@User() user: any, walletFromId: string) {
+
+    try {
+      const transactions = await this.transactionModel.find({ walletFromId }).exec();
+      return { data: { transactions }, error: '', success: true };
+    } catch (error) {
+      return { data: {}, error: error.message, success: false };
+    }
+  }
+
   async getPredictTransactions(@User() user: any) {
     const query: any = { userId: user.sub };
 

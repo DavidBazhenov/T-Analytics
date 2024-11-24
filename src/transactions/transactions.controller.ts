@@ -342,4 +342,79 @@ export class TransactionController {
         const transactions = await this.transactionService.getPredictTransactions(user);
         return transactions;
     }
+
+    @Get('getTransactionsByWalletFromId/:walletFromId')
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Получить список транзакций для указанного кошелька' })
+    @ApiParam({
+        name: 'walletFromId',
+        type: String,
+        description: 'Идентификатор кошелька, для которого нужно получить транзакции',
+        required: true,
+    })
+    @ApiResponse({
+        status: 200,
+        description: 'Список транзакций успешно получен',
+        schema: {
+            example: {
+                success: true,
+                data: {
+                    transactions: [
+                        {
+                            id: '63f6a5e77c840f2c7bcf5e71',
+                            userId: '63f6a5e77c840f2c7bcf5e6e',
+                            category: {
+                                name: 'Food',
+                                icon: '🛒',
+                                color: '#FF5722',
+                            },
+                            walletFromId: '63f6a5e77c840f2c7bcf5e70',
+                            amount: 500,
+                            type: 'expense',
+                            date: '2024-11-01T10:00:00Z',
+                            description: 'Dinner at a restaurant',
+                        },
+                    ],
+                },
+                error: '',
+            },
+        },
+    })
+    @ApiResponse({
+        status: 404,
+        description: 'Кошелек с указанным идентификатором не найден',
+        schema: {
+            example: {
+                success: false,
+                data: null,
+                error: 'Wallet not found',
+            },
+        },
+    })
+    @ApiResponse({
+        status: 500,
+        description: 'Ошибка сервера при выполнении запроса',
+        schema: {
+            example: {
+                success: false,
+                data: null,
+                error: 'Internal server error',
+            },
+        },
+    })
+    async getTransactionsByWalletFromId(
+        @User() user: any,
+        @Param('walletFromId') walletFromId: string,
+    ) {
+        try {
+            const transactions = await this.transactionService.getTransactionsByWalletFromId(
+                user,
+                walletFromId,
+            );
+            return transactions;
+        } catch (error) {
+            
+        }
+    }
+
 }
