@@ -1,102 +1,104 @@
+import random
 import pandas as pd
 import numpy as np
+from datetime import datetime, timedelta
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error
+from sklearn.ensemble import RandomForestRegressor
 from joblib import dump
 
-# варианты моделей
-from sklearn.ensemble import GradientBoostingRegressor
-from generation_data import Generate_data
-from sklearn.linear_model import LinearRegression 
-
-from sklearn.model_selection import train_test_split  # Для разделения данных на обучающую и тестовую выборку
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error  # Для оценки качества модели
-
-pd.set_option('display.max_rows', None)  # Отображать все строки
 pd.set_option('display.max_columns', None)  # Отображать все столбцы
 
-class ML_block_education:
-    def __init__(self, data : Generate_data, model_numer : int) -> None:
-        self.data = data
-        self.exclude_substrings = ['Transact to', 'Transact from']
-        self.model_number = model_numer
-        
-        
-    def prediction_for_current_person(self, person_index : int) -> None:
-        self.person_dataFrame = self.data.get_persons_dataFrame(person_index)
-        self.set_analyzed_categories()
-        self.df_filtered_with_dummies = self.set_dummies(self.person_dataFrame)
-        self.X, self.y = self.set_X_y(self.df_filtered_with_dummies)
-        self.education()
-        # self.prediction()
-        
-        
-        
-    def set_analyzed_categories(self) -> None:
-        self.person_categories = self.person_dataFrame['Category'].unique()
-        
-        self.analyzed_categories = [
-            category for category in self.person_categories
-            if not any(sub in category for sub in self.exclude_substrings)
-        ]
-        
-    def set_dummies(self, dataFrame : pd.DataFrame, mode=False) -> pd.DataFrame:
-        # создание отфильтрованного dataframe
-        df_filtered = dataFrame[dataFrame['Category'].isin(self.analyzed_categories)]
-        
-        # Создание категориальных признаков по отфильтрованному датафрейму
-        df_filtered_with_dummies = pd.get_dummies(df_filtered, columns=['Category'], prefix='Cat')
-        
-        if mode: self.df_filtered = df_filtered
-        return df_filtered_with_dummies
-        
-    def set_X_y(self, df_with_dummies : pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
-        cat_columns = [cat for cat in df_with_dummies.columns if cat.startswith("Cat_")]
-        print(f'cat columns = {cat_columns}')
-        # формирование матрицы признаков
-        X = self.df_filtered_with_dummies[cat_columns]
-        
-        # целевая переменная
-        y = self.df_filtered_with_dummies['Amount']
-        
-        return X, y
-        
-        
-    def education(self) -> None:
-        X_train, X_test , y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=42, shuffle=True)
-        self.model = LinearRegression()
-        self.model.fit(X_train, y_train)
-        print(self.model)
-        
-        y_pred = self.model.predict(X_test)
-        
-        mae = mean_absolute_error(y_test, y_pred)
-        mse = mean_squared_error(y_test, y_pred)
-        rmse = np.sqrt(mse)
-        r2 = r2_score(y_test, y_pred)
-        
-        print(f'mae = {mae}')
-        print(f'mse = {mse}')
-        print(f'rmse = {rmse}')
-        print(f'r2 = {r2}')
-        
-        dump(self.model, 'mlp_model.joblib')
-        
-        
-        
-        
-    def prediction(self) -> None:
-        df_dummies = self.set_dummies(self.person_dataFrame, mode=True)
-        
-        cat_columns_future = [cat for cat in df_dummies.columns if cat.startswith("Cat_")]
-        X_future = df_dummies[cat_columns_future]
-        
-        amount_predicted = self.model.predict(X_future)
-        self.df_filtered['Amount_predicted'] = amount_predicted
-        
-        print(self.df_filtered)
+# Генерация последовательных дат
+def generate_sequential_dates(start_date: datetime, num_days: int) -> list[datetime]:
+    return [start_date + timedelta(days=i) for i in range(num_days)]
+
+# Генерация данных для нескольких людей
+def generate_financial_data(year, month, num_people=10, num_days=30):
+    categories = [
+        "Food", "Transport", "Entertainment", "Shopping", "Medical", 
+        "Subscriptions", "Dining_out", "Miscellaneous"
+    ]
+    monthly_categories = ["Housing", "Gym", "Utilities"]
     
+    min_salary = 20000
+    max_salary = 250000
+    min_advance = 10000
+    max_advance = 90000
     
-if __name__ == "__main__":
-    data = Generate_data(5, 120)   
+    salary_step = (max_salary - min_salary) / num_people
+    advance_step = (max_advance - min_advance) / num_people
     
-    ml_block = ML_block_education(data, 1)
-    ml_block.prediction_for_current_person(person_index=0)
+    data = []
+    
+    for person_id in range(num_people):
+        start_date = datetime(year, month, 1)
+        dates = generate_sequential_dates(start_date, num_days)
+        
+        salary = min_salary + salary_step * person_id
+        advance = min_advance + advance_step * person_id
+        total_balance = 0
+        
+        for cur_day in dates:
+            # Добавление зарплаты
+            if cur_day.day == 10:
+                data.append({"person_id": person_id, "Date": cur_day, "Amount": salary, "Category": "Salary", "Balance": total_balance})
+                total_balance += salary
+            # Добавление аванса
+            elif cur_day.day == 25:
+                data.append({"person_id": person_id, "Date": cur_day, "Amount": advance, "Category": "Advance", "Balance": total_balance})
+                total_balance += advance
+            
+            # Случайные расходы
+            expense_count = random.randint(1, 3)
+            for _ in range(expense_count):
+                category = random.choice(categories)
+                amount = random.uniform(10, min(total_balance / 3, 1000))
+                total_balance -= amount
+                if total_balance > 0:
+                    data.append({"person_id": person_id, "Date": cur_day, "Amount": -amount, "Category": category, "Balance": total_balance})
+            
+            # Раз в месяц
+            if random.random() < 0.05:
+                category = random.choice(monthly_categories)
+                amount = random.uniform(10, min(total_balance / 5, 2000))
+                total_balance -= amount
+                if total_balance > 0:
+                    data.append({"person_id": person_id, "Date": cur_day, "Amount": -amount, "Category": category, "Balance": total_balance})
+    
+    return pd.DataFrame(data)
+
+# Генерация данных
+data = generate_financial_data(2024, 1, num_people=60, num_days=75)
+
+# Создание дополнительных признаков
+data['Date_numeric'] = (data['Date'] - data['Date'].min()).dt.days
+data['Amount_abs'] = data['Amount'].abs()  # Абсолютная сумма транзакции
+data['Is_income'] = (data['Amount'] > 0).astype(int)  # Доход или расход
+data['Day_of_week'] = data['Date'].dt.dayofweek  # День недели (0 - Пн, 6 - Вс)
+data['Week_of_month'] = data['Date'].dt.day // 7  # Неделя месяца
+data = pd.get_dummies(data, columns=['Category'], drop_first=True)  # One-hot encoding категорий
+
+# Признаки и целевая переменная
+X = data.drop(columns=['Date', 'Amount'])
+y = data['Amount']
+
+# Разделение на обучающую и тестовую выборки
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+model = RandomForestRegressor(n_estimators=200, max_depth=15, random_state=42)
+model.fit(X_train, y_train)
+
+dump(model, 'mlp_model_4.joblib')
+
+# Оценка модели
+y_pred = model.predict(X_test).tolist()
+mae = mean_absolute_error(y_test, y_pred)
+print(f"Mean Absolute Error: {mae}")
+
+# Пример сравнения прогнозов с реальными данными
+result_df = X_test.copy()
+result_df['Actual'] = y_test
+result_df['Predicted'] = y_pred
+# print(result_df.head())
