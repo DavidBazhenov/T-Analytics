@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* public/styles/globals.css */
+
+body {
+  background-color: #1D1D1D !important;
+}
+
+@font-face {
+  font-family: 'TinkoffSans';
+  src: url('/fonts/TinkoffSans-Regular.woff2') format('woff2'),
+       url('/fonts/TinkoffSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TinkoffSans';
+  src: url('/fonts/TinkoffSans-Medium.woff2') format('woff2'),
+       url('/fonts/TinkoffSans-Medium.woff') format('woff');
+  font-weight: 500; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TinkoffSans';
+  src: url('/fonts/TinkoffSans-Bold.woff2') format('woff2'),
+       url('/fonts/TinkoffSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Holtwood One SC';
+  src: url('/fonts/HoltwoodOneSC-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
