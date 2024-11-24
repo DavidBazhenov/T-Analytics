@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cybergarden2024android.data.network.ApiHelper
 import com.example.cybergarden2024android.data.network.models.ItemWallet
+import com.example.cybergarden2024android.data.network.models.TransactionData
+import com.example.cybergarden2024android.data.network.models.Transactions
 import com.example.cybergarden2024android.data.network.models.WalletData
 import kotlinx.coroutines.launch
 
@@ -32,10 +34,27 @@ class WalletViewModel(private val apiHelper: ApiHelper) : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = apiHelper.getWallets(accessToken)
-                Log.i("Dibug1", response.code().toString())
                 if (response.isSuccessful) {
                     onSuccess(response.body()!!.data)
                 } else {
+                    onError("Ошибка обновления профиля: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                onError("Ошибка подключения: ${e.message}")
+            }
+        }
+    }
+
+    fun getAllTransactions(accessToken: String, onSuccess: (TransactionData) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            try {
+                val response = apiHelper.getAllTransactions(accessToken)
+                Log.i("Dibug1", response.message())
+                if (response.isSuccessful) {
+
+                    onSuccess(response.body()!!.data)
+                } else {
+                    Log.i("Dibug1", response.code().toString())
                     onError("Ошибка обновления профиля: ${response.message()}")
                 }
             } catch (e: Exception) {

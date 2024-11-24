@@ -1,6 +1,7 @@
 package com.example.cybergarden2024android.data.network
 
 import com.example.cybergarden2024android.data.network.models.AuthResponse
+import com.example.cybergarden2024android.data.network.models.Transactions
 import com.example.cybergarden2024android.data.network.models.Wallets
 import retrofit2.Response
 
@@ -36,5 +37,9 @@ class ApiHelper(private val apiService: ApiService) {
 
     suspend fun getWallets(accessToken: String): Response<Wallets> {
         return apiService.getWallets(accessToken)
+    }
+
+    suspend fun getAllTransactions(accessToken: String): Response<Transactions> {
+        return apiService.getAllTransactions(accessToken)
     }
 }

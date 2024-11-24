@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cybergarden2024android.R
 import com.example.cybergarden2024android.data.network.ApiHelper
 import com.example.cybergarden2024android.data.network.ApiService
+import com.example.cybergarden2024android.data.network.models.ItemTransaction
 import com.example.cybergarden2024android.data.network.models.ItemWallet
 import com.example.cybergarden2024android.databinding.FragmentWalletBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -26,6 +27,11 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class Wallet : Fragment(R.layout.fragment_wallet) {
     private var _binding: FragmentWalletBinding? = null
@@ -64,6 +70,18 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
                 listWallets.clear()
                 listWallets.addAll(list)
                 itemWalletAdapter.notifyDataSetChanged()
+                binding.summWallets.text = formatNumber(data.summ)
+            },
+            onError = { errorMessage ->
+                Log.e("Error", errorMessage)
+            }
+        )
+
+        viewModel.getAllTransactions(
+            bearerToken,
+            onSuccess = { data ->
+                setupChart(binding.lineChart, data.transactionsArray, listWallets)
+                Log.i("Dibug1", data.toString())
             },
             onError = { errorMessage ->
                 Log.e("Error", errorMessage)
@@ -78,7 +96,7 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
             showBottomSheetDialog(type = "cash", accessToken = token)
         }
 
-        setupChart(binding.lineChart)
+
 
 
 
@@ -93,26 +111,32 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
         _binding = null
     }
 
-    private fun setupChart(lineChart: LineChart) {
+    fun formatNumber(number: Double): String {
+        val decimalFormat = DecimalFormat("#,###.0")
+        return decimalFormat.format(number) + " ₽"
+    }
+
+    private fun setupChart(lineChart: LineChart, transactions: List<ItemTransaction>, wallets: List<ItemWallet>) {
         // Данные для графика
-        val dataSet1 = createLineDataSet(
-            data = listOf(Entry(0f, 100f), Entry(1f, 200f), Entry(2f, 150f), Entry(3f, 300f)),
-            label = "Серия 1",
-            color = Color.GREEN
-        )
-        val dataSet2 = createLineDataSet(
-            data = listOf(Entry(0f, 50f), Entry(1f, 100f), Entry(2f, 120f), Entry(3f, 200f)),
-            label = "Серия 2",
-            color = Color.BLUE
-        )
-        val dataSet3 = createLineDataSet(
-            data = listOf(Entry(0f, 20f), Entry(1f, 60f), Entry(2f, 80f), Entry(3f, 100f)),
-            label = "Серия 3",
-            color = Color.CYAN
-        )
+//        val dataSet1 = createLineDataSet(
+//            data = listOf(Entry(0f, 100f), Entry(1f, 200f), Entry(2f, 150f), Entry(3f, 300f)),
+//            label = "Серия 1",
+//            color = Color.GREEN
+//        )
+//        val dataSet2 = createLineDataSet(
+//            data = listOf(Entry(0f, 50f), Entry(1f, 100f), Entry(2f, 120f), Entry(3f, 200f)),
+//            label = "Серия 2",
+//            color = Color.BLUE
+//        )
+//        val dataSet3 = createLineDataSet(
+//            data = listOf(Entry(0f, 20f), Entry(1f, 60f), Entry(2f, 80f), Entry(3f, 100f)),
+//            label = "Серия 3",
+//            color = Color.CYAN
+//        )
+        val linedata = generateChartData(transactions, wallets)
 
         // Установка данных в график
-        val lineData = LineData(dataSet1, dataSet2, dataSet3)
+        val lineData = LineData(linedata)
         lineChart.data = lineData
 
         // Настройка осей
@@ -260,5 +284,64 @@ class Wallet : Fragment(R.layout.fragment_wallet) {
             }
         }
 
+    }
+
+    fun calculateMonthDifference(transactions: List<ItemTransaction>): Long {
+        val formatter = DateTimeFormatter.ISO_DATE_TIME
+
+        val minDate = transactions
+            .map { LocalDateTime.parse(it.date, formatter) }
+            .minOrNull() ?: throw IllegalArgumentException("No transactions found")
+
+        val maxDate = transactions
+            .map { LocalDateTime.parse(it.date, formatter) }
+            .maxOrNull() ?: throw IllegalArgumentException("No transactions found")
+
+        return ChronoUnit.MONTHS.between(minDate, maxDate)
+    }
+
+    fun generateChartData(transactions: List<ItemTransaction>, wallets: List<ItemWallet>): List<LineDataSet> {
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
+        val groupedTransactions = mutableMapOf<String, MutableMap<String, Float>>() // walletId -> (date -> sum)
+
+        // Группируем транзакции по кошелькам и датам
+        for (transaction in transactions) {
+            val date = dateFormatter.format(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(transaction.date))
+            val walletId = transaction.walletId
+            val amount = transaction.amount
+
+            // Инициализация для кошелька и даты
+            if (groupedTransactions[walletId] == null) {
+                groupedTransactions[walletId] = mutableMapOf()
+            }
+            groupedTransactions[walletId]?.merge(date, amount.toFloat()) { old, new -> old + new }
+        }
+
+        // Создаем LineDataSet для каждого кошелька
+        val dataSets = mutableListOf<LineDataSet>()
+
+        for ((walletId, dateSums) in groupedTransactions) {
+            val walletName = wallets.find { it.id == walletId }?.name ?: continue
+            val sortedEntries = dateSums.entries
+                .sortedBy { it.key }  // Сортировка по датам
+                .mapIndexed { index, entry ->
+                    Entry(index.toFloat(), entry.value)
+                }
+
+            val dataSet = createLineDataSet(
+                data = sortedEntries,
+                label = walletName,
+                color = when(walletName) {
+                    "Beneath" -> Color.GREEN
+                    "Vsdvsf" -> Color.BLUE
+                    "Ewqewq" -> Color.CYAN
+                    else -> Color.RED
+                }
+            )
+
+            dataSets.add(dataSet)
+        }
+
+        return dataSets
     }
 }

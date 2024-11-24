@@ -2,6 +2,7 @@ package com.example.cybergarden2024android.data.network
 
 import android.icu.util.Currency
 import com.example.cybergarden2024android.data.network.models.AuthResponse
+import com.example.cybergarden2024android.data.network.models.Transactions
 import com.example.cybergarden2024android.data.network.models.Wallets
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -34,6 +35,9 @@ interface ApiService {
 
     @GET("wallets/findManyWallets")
     suspend fun getWallets(@Header("Authorization") authHeader: String): Response<Wallets>
+
+    @GET("transactions/getAllTransactions")
+    suspend fun getAllTransactions(@Header("Authorization") authHeader: String): Response<Transactions>
 
     companion object {
         private const val BASE_URL = "http://194.87.202.4:3000/"

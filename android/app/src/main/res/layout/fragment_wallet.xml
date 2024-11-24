@@ -22,7 +22,7 @@
             android:textSize="26sp" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/summWallets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
