@@ -41,7 +41,7 @@ class CreateWallet: ViewController {
     
     private let continueButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Добавить", for: .normal)
+        button.setTitle(^String.General.addButtonTitle, for: .normal)
         button.setTitleColor(.appBlack, for: .normal)
         button.titleLabel?.font = .interRegular(ofSize: 16)
         button.backgroundColor = .hexFEDE34

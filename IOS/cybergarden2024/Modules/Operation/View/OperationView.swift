@@ -24,7 +24,7 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     let selectorWalletsButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Все кошельки", for: .normal)
+        button.setTitle(^String.General.allWalletsTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .interMedium(ofSize: 14)
         button.contentHorizontalAlignment = .center
@@ -47,7 +47,7 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     let selectorDateButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Выбрать даты", for: .normal)
+        button.setTitle(^String.General.selectDatesTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .interMedium(ofSize: 14)
         button.contentHorizontalAlignment = .center
@@ -145,7 +145,7 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     // MARK: - Setup
     private func setupTitle() {
-        mainLabel.text = "Операции"
+        mainLabel.text = ^String.General.operationsTitle
     }
 
     private func setupViews() {
@@ -214,7 +214,7 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             filteredTransactions = filteredTransactions.filter { $0.walletFromId == wallet._id }
             selectorWalletsButton.setTitle(wallet.name, for: .normal)
         } else {
-            selectorWalletsButton.setTitle("Все кошельки", for: .normal)
+            selectorWalletsButton.setTitle(^String.General.allWalletsTitle, for: .normal)
         }
         if let startDate = startDate, let endDate = endDate {
             filteredTransactions = filteredTransactions.filter {
@@ -225,7 +225,7 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             dateFormatter.dateFormat = "dd.MM"
             selectorDateButton.setTitle("\(dateFormatter.string(from: startDate)) - \(dateFormatter.string(from: endDate))", for: .normal)
         } else {
-            selectorDateButton.setTitle("Выбрать даты", for: .normal)
+            selectorDateButton.setTitle(^String.General.selectDatesTitle, for: .normal)
         }
 
         groupedTransactions = groupTransactionsByDate(transactions: filteredTransactions)
@@ -264,9 +264,9 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     }
 
     @objc private func showWalletSelector() {
-        let alertController = UIAlertController(title: "Выберите кошелек", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: ^String.General.selectWalletTitle, message: nil, preferredStyle: .actionSheet)
 
-        let allWalletsAction = UIAlertAction(title: "Все кошельки", style: .default) { _ in
+        let allWalletsAction = UIAlertAction(title: ^String.General.allWalletsTitle, style: .default) { _ in
             self.selectedWallet = nil
             self.applyFilters()
         }
@@ -280,7 +280,7 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             alertController.addAction(action)
         }
 
-        alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alertController.addAction(UIAlertAction(title: ^String.General.cancelButtonTitle, style: .cancel))
         findParentViewController()?.present(alertController, animated: true)
     }
 
@@ -324,7 +324,7 @@ class OperationView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             return UICollectionViewCell()
         }
         let transaction = groupedTransactions[indexPath.section].transactions[indexPath.item]
-        let walletName = wallets.first(where: { $0._id == transaction.walletFromId })?.name ?? "Неизвестный кошелек"
+        let walletName = wallets.first(where: { $0._id == transaction.walletFromId })?.name ?? ^String.General.unknownWalletError
         cell.update(transaction: transaction, walletName: walletName)
         return cell
     }

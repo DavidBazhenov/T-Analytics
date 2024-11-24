@@ -18,7 +18,11 @@ class PredictViewController: ViewController {
         navigationController?.isNavigationBarHidden = true
         view = mainView
         setupBindings()
-        viewModel.getPredictTransactions()
+        if UserDefaultsHelper.shared.ml ?? false {
+            viewModel.getPredictTransactions()
+        } else {
+            showToast(title: "Вам необходимо дать доступ в настройках")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

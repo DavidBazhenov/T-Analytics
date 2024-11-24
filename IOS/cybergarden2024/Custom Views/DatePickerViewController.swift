@@ -78,7 +78,7 @@ class DatePickerViewController: UIViewController {
         stackView.spacing = 10
 
         let cancelButton = UIButton(type: .system)
-        cancelButton.setTitle("Отмена", for: .normal)
+        cancelButton.setTitle(^String.General.cancelButtonTitle, for: .normal)
         cancelButton.setTitleColor(.hexFEDE34, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
 

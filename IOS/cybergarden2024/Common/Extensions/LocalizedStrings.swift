@@ -13,6 +13,34 @@ extension String {
         return prefix(1).capitalized + dropFirst()
     }
     
+    
+    enum General: String {
+        case planningTitle
+        case incomesTitle
+        case expensesTitle
+        case lastMonthTitle
+        case allTimeTitle
+        case addOperationsTitle
+        case reportTitle
+        case descriptionPlaceholder
+        case amountPlaceholder
+        case selectWalletTitle
+        case addButtonTitle
+        case cancelButtonTitle
+        case descriptionEmptyError
+        case amountPositiveError
+        case selectWalletError
+        case selectCategoryError
+        case allWalletsTitle
+        case selectDatesTitle
+        case operationsTitle
+        case unknownWalletError
+        case invalidPhoneError
+        case nameEmptyError
+        case invalidEmailError
+        case passwordEmptyError
+    }
+    
     enum Root: String {
         case rootOperationsTitle
         case rootWalletsTitle

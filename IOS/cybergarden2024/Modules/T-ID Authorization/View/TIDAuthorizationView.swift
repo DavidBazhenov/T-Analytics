@@ -122,7 +122,7 @@ class TIDAuthorizationView: UIView, UITextFieldDelegate {
     @objc private func continueButtonTapped() {
         let phone = phoneTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         guard isValidPhone(phone) else {
-            action.onNext(.alert(error: "Неверный формат номера телефона"))
+            action.onNext(.alert(error: ^String.General.invalidPhoneError))
             return
         }
         

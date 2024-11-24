@@ -54,3 +54,29 @@
 "WalletReport" = "Отчет";
 "WalletCreateNewCardTitle" = "Добавить банковский счет";
 "WalletCreateNewCashTitle" = "Создать новый кошелек";
+
+// General
+"PlanningTitle" = "Планирование";
+"IncomesTitle" = "Доходы";
+"ExpensesTitle" = "Расходы";
+"LastMonthTitle" = "За последний месяц";
+"AllTimeTitle" = "Все время";
+"AddOperationsTitle" = "Добавление операций";
+"ReportTitle" = "Отчет";
+"DescriptionPlaceholder" = "Описание (макс. 20)";
+"AmountPlaceholder" = "Сумма";
+"SelectWalletTitle" = "Выберите кошелек";
+"AddButtonTitle" = "Добавить";
+"CancelButtonTitle" = "Отмена";
+"DescriptionEmptyError" = "Описание не может быть пустым.";
+"AmountPositiveError" = "Сумма должна быть положительным целым числом.";
+"SelectWalletError" = "Выберите кошелек.";
+"SelectCategoryError" = "Выберите категорию.";
+"AllWalletsTitle" = "Все кошельки";
+"SelectDatesTitle" = "Выбрать даты";
+"OperationsTitle" = "Операции";
+"UnknownWalletError" = "Неизвестный кошелек";
+"InvalidPhoneError" = "Неверный формат номера телефона";
+"NameEmptyError" = "Имя не может быть пустым";
+"InvalidEmailError" = "Неверный формат электронной почты";
+"PasswordEmptyError" = "Пароль не может быть пустым";

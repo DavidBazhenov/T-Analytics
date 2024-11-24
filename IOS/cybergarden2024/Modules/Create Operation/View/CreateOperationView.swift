@@ -20,7 +20,7 @@ class CreateOperationView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Добавление операций"
+        label.text = ^String.General.addOperationsTitle
         label.textColor = .hexECF1F7
         label.font = .interMedium(ofSize: 20)
         label.textAlignment = .center
@@ -54,7 +54,7 @@ class CreateOperationView: UIView {
 
     private let descriptionTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Описание (макс. 20)"
+        textField.placeholder = ^String.General.descriptionPlaceholder
         textField.borderStyle = .none
         textField.backgroundColor = .clear
         textField.textColor = .white
@@ -65,7 +65,7 @@ class CreateOperationView: UIView {
         textField.layer.cornerRadius = 12
         textField.setLeftPadding(12)
         textField.attributedPlaceholder = NSAttributedString(
-            string: "Описание (макс. 20)",
+            string: ^String.General.descriptionPlaceholder,
             attributes: [.foregroundColor: UIColor.lightGray]
         )
         return textField
@@ -82,7 +82,7 @@ class CreateOperationView: UIView {
 
     private let amountTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Сумма"
+        textField.placeholder = ^String.General.amountPlaceholder
         textField.borderStyle = .none
         textField.backgroundColor = .clear
         textField.textColor = .white
@@ -94,7 +94,7 @@ class CreateOperationView: UIView {
         textField.setLeftPadding(12)
         textField.keyboardType = .decimalPad
         textField.attributedPlaceholder = NSAttributedString(
-            string: "Сумма",
+            string: ^String.General.amountPlaceholder,
             attributes: [.foregroundColor: UIColor.lightGray]
         )
         return textField
@@ -102,7 +102,7 @@ class CreateOperationView: UIView {
 
     private let walletPicker: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Выберите кошелек", for: .normal)
+        button.setTitle(^String.General.selectWalletTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .hex2E2F34
         button.layer.borderWidth = 1
@@ -122,7 +122,7 @@ class CreateOperationView: UIView {
 
     private let addButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Добавить", for: .normal)
+        button.setTitle(^String.General.addButtonTitle, for: .normal)
         button.setTitleColor(.appBlack, for: .normal)
         button.titleLabel?.font = .interRegular(ofSize: 16)
         button.backgroundColor = .hexFEDE34
@@ -206,7 +206,7 @@ class CreateOperationView: UIView {
     @objc private func walletPickerTapped() {
         guard !wallets.isEmpty else { return }
 
-        let alertController = UIAlertController(title: "Выберите кошелек", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: ^String.General.selectWalletTitle, message: nil, preferredStyle: .actionSheet)
         
         for (index, wallet) in wallets.enumerated() {
             let action = UIAlertAction(title: wallet.name, style: .default) { [weak self] _ in
@@ -215,7 +215,7 @@ class CreateOperationView: UIView {
             }
             alertController.addAction(action)
         }
-        alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alertController.addAction(UIAlertAction(title: ^String.General.cancelButtonTitle, style: .cancel))
 
         if let topController = getTopMostViewController() {
             topController.present(alertController, animated: true)
@@ -257,19 +257,19 @@ class CreateOperationView: UIView {
 
     func validateAndReturnData() -> (walletFromId: String, amount: Float, type: String, date: String, description: String, category: TransactionModel.Category)? {
         guard let description = descriptionTextField.text, !description.isEmpty else {
-            alerts.onNext("Описание не может быть пустым.")
+            alerts.onNext(^String.General.descriptionEmptyError)
             return nil
         }
         guard let amountText = amountTextField.text, let amount = Float(amountText), amount > 0, amount == floor(amount) else {
-            alerts.onNext("Сумма должна быть положительным целым числом.")
+            alerts.onNext(^String.General.amountPositiveError)
             return nil
         }
         guard wallets.indices.contains(walletPicker.tag) else {
-            alerts.onNext("Выберите кошелек.")
+            alerts.onNext(^String.General.selectWalletTitle)
             return nil
         }
         guard categoryPicker.selectedSegmentIndex >= 0 else {
-            alerts.onNext("Выберите категорию.")
+            alerts.onNext(^String.General.selectCategoryError)
             return nil
         }
         let walletFromId = wallets[walletPicker.tag]._id ?? ""
@@ -282,6 +282,6 @@ class CreateOperationView: UIView {
     func updateWallets(_ wallets: [WalletModel]) {
         self.wallets = wallets
         walletPicker.tag = 0
-        walletPicker.setTitle(wallets.first?.name ?? "Выберите кошелек", for: .normal)
+        walletPicker.setTitle(wallets.first?.name ?? ^String.General.selectWalletTitle, for: .normal)
     }
 }

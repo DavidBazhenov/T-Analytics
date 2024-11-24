@@ -140,17 +140,17 @@ class AuthorizationInputView: UIView {
         let nameText = nameTextField.text ?? ""
         
         if !nameTitleLabel.isHidden && nameText.isEmpty {
-            alert.onNext("Имя не может быть пустым")
+            alert.onNext(^String.General.nameEmptyError)
             return false
         }
         
         if emailText.isEmpty || !isValidEmail(emailText) {
-            alert.onNext("Неверный формат электронной почты")
+            alert.onNext(^String.General.invalidEmailError)
             return false
         }
         
         if passwordText.isEmpty {
-            alert.onNext("Пароль не может быть пустым")
+            alert.onNext(^String.General.passwordEmptyError)
             return false
         }
         return true

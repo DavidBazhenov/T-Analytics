@@ -68,7 +68,7 @@ class ReportViewCell: UICollectionViewCell {
     func update(category: TransactionModel.Category, count: Int, price: Double, isIncome: Bool) {
         titleLogo.text = category.icon ?? ""
         titleName.text = category.name ?? ""
-        titleCount.text = "\(count) \(pluralize(count, singular: "Операция", few: "Операции", many: "Операций"))"
+        titleCount.text = "\(count) \(pluralize(count, singular: "Операция", few: ^String.General.operationsTitle, many: "Операций"))"
         titlePrice.text = String(format: "%.0f", price)
         titlePrice.text = "\(isIncome ? "+" : "-")\(titlePrice.text ?? "") ₽"
     }

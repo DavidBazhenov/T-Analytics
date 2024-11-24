@@ -138,17 +138,17 @@ class EditProfileView: UIView, UITextFieldDelegate {
         let phone = phoneTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         guard !name.isEmpty else {
-            alert.onNext("Имя не может быть пустым")
+            alert.onNext(^String.General.nameEmptyError)
             return
         }
         
         guard isValidEmail(email) else {
-            alert.onNext("Неверный формат электронной почты")
+            alert.onNext(^String.General.invalidEmailError)
             return
         }
         
         guard isValidPhone(phone) else {
-            alert.onNext("Неверный формат номера телефона")
+            alert.onNext(^String.General.invalidPhoneError)
             return
         }
         

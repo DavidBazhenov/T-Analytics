@@ -29,7 +29,7 @@ class ReportView: UIView, UIPageViewControllerDataSource {
     
     private let mainLabel: UILabel = {
         let label = ViewsFactory.defaultLabel(textColor: .hexECF1F7, font: .interMedium(ofSize: 32))
-        label.text = "Отчет"
+        label.text = ^String.Wallet.walletReport
         return label
     }()
     
@@ -55,7 +55,7 @@ class ReportView: UIView, UIPageViewControllerDataSource {
     }()
     
     private let categoryPicker: UISegmentedControl = {
-        let picker = UISegmentedControl(items: ["Доходы", "Расходы"])
+        let picker = UISegmentedControl(items: [^String.General.incomesTitle, ^String.General.expensesTitle])
         picker.backgroundColor = .hex1D1D1D
         picker.selectedSegmentTintColor = .hexFEDE34
         picker.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 14, weight: .medium)], for: .normal)
@@ -80,10 +80,10 @@ class ReportView: UIView, UIPageViewControllerDataSource {
     
     private lazy var pageControllers: [UIViewController] = {
         let currentMonthVC = ChartPageViewController()
-        currentMonthVC.configure(with: "За последний месяц")
+        currentMonthVC.configure(with: ^String.General.lastMonthTitle)
         
         let allTimeVC = ChartPageViewController()
-        allTimeVC.configure(with: "Все время")
+        allTimeVC.configure(with: ^String.General.allTimeTitle)
         
         _ = currentMonthVC.view
         _ = allTimeVC.view
@@ -277,7 +277,7 @@ extension ReportView: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         }
         
         let totalAmount = categorizedTransactions[indexPath.section].reduce(0) { $0 + $1.price }
-        let title = indexPath.section == 0 ? "Расходы" : "Доходы"
+        let title = indexPath.section == 0 ? ^String.General.incomesTitle : ^String.General.expensesTitle
         
         header.update(title: title, totalAmount: totalAmount)
         return header

@@ -20,13 +20,13 @@ class PredictView: UIView {
         let label = UILabel()
         label.textColor = .hexECF1F7
         label.font = UIFont.systemFont(ofSize: 32, weight: .medium)
-        label.text = "Планирование"
+        label.text = ^String.Root.rootPlanTitle
         label.textAlignment = .center
         return label
     }()
     
     private let categoryPicker: UISegmentedControl = {
-        let picker = UISegmentedControl(items: ["Доходы", "Расходы"])
+        let picker = UISegmentedControl(items: [^String.General.incomesTitle, ^String.General.expensesTitle])
         picker.backgroundColor = .hex1D1D1D
         picker.selectedSegmentTintColor = .hexFEDE34
         picker.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 14, weight: .medium)], for: .normal)
