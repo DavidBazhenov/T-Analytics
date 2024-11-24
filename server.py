@@ -38,10 +38,6 @@ class NeuralNetResponse(BaseModel):
 
 @app.post("/predict/")
 async def get_predictions(request: Request):
-    print("HANDLE POST")
-    """
-    Обрабатывает POST-запрос, принимает массив JSON, проверяет его, отправляет данные нейросети и возвращает результат.
-    """
     try:
         # Извлекаем тело запроса
         body = await request.json()
@@ -66,44 +62,16 @@ async def get_predictions(request: Request):
                 for i in range(len(body)): body[i]['Amount'] = predicted_data[i]
                 return NeuralNetResponse(predictions=body)
             except Exception as e:
-                HTTPException(status_code=504, detail='Error during prediction')
-                
-                
+                HTTPException(status_code=504, detail='Error during prediction')           
     except HTTPException as e:
-        pass
+        pass 
 
-
-# def predict_future_income(data : list[dict]) -> list:
-#     df = pd.DataFrame(data)
-#     cur_categories = df['Category'].unique().tolist()
-#     last_date = df.iloc[-1]['Date']
-    
-#     print(f'cur_columns = {cur_categories}')
-#     print(f'analyzed_categories = {analyzed_categories_improved}')
-    
-#     for row in analyzed_categories_improved:
-#         if not(row in cur_categories): 
-#             new_row = {'Date': last_date, 'Amount': 0, 'Category': row}
-#             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
-    
-    
-#     df_dummies = pd.get_dummies(df, columns=['Category'], prefix='Cat')
-#     cats_cur = [cat for cat in df_dummies.columns if cat.startswith("Cat_")]
-    
-#     X = df_dummies[cats_cur]
-#     print()
-#     print('X =')
-#     print(X)
-#     y_pred = model.predict(X)
-#     print(y_pred)
-#     # Возвращаем предсказания как список
-#     return y_pred.tolist()
 
 def predict_future_income(data : list[dict]) -> list:
     df = pd.DataFrame(data)
     # Добавление признаков
-    df['person_id'] = 0  # Устанавливаем фиксированный person_id
-    df['Date'] = pd.to_datetime(df['Date'])  # Преобразуем дату в формат datetime
+    df['person_id'] = 0
+    df['Date'] = pd.to_datetime(df['Date']) 
     df['Date_numeric'] = (df['Date'] - df['Date'].min()).dt.days
     df['Amount_abs'] = df['Amount'].abs()
     df['Is_income'] = (df['Amount'] > 0).astype(int)
@@ -125,7 +93,7 @@ def predict_future_income(data : list[dict]) -> list:
     # Убедимся, что все пропущенные столбцы добавлены
     for feature in expected_features:
         if feature not in df.columns:
-            df[feature] = 0  # Заполняем пропущенные категории нулями
+            df[feature] = 0  
 
     # Убедимся, что используем только признаки, ожидаемые моделью
     X_new = df[expected_features]

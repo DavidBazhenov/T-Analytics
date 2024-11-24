@@ -1,10 +1,9 @@
 import random
 import pandas as pd
-import numpy as np
 from datetime import datetime, timedelta
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from joblib import dump
 
 pd.set_option('display.max_columns', None)  # Отображать все столбцы
@@ -86,7 +85,6 @@ y = data['Amount']
 # Разделение на обучающую и тестовую выборки
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-
 model = RandomForestRegressor(n_estimators=200, max_depth=15, random_state=42)
 model.fit(X_train, y_train)
 
@@ -94,11 +92,21 @@ dump(model, 'mlp_model_4.joblib')
 
 # Оценка модели
 y_pred = model.predict(X_test).tolist()
-mae = mean_absolute_error(y_test, y_pred)
-print(f"Mean Absolute Error: {mae}")
 
-# Пример сравнения прогнозов с реальными данными
-result_df = X_test.copy()
+# основные метрики
+mse = mean_squared_error(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
+rmse = mean_squared_error(y_test, y_pred, squared=False)  
+r2 = r2_score(y_test, y_pred)
+print(f"Mean Absolute Error: {mae}")
+print("MSE:", mse)
+print("RMSE:", rmse)
+print("MAE:", mae)
+print("R²:", r2)
+
+# Cравнения прогнозов с реальными данными
+# result_df = X_test.copy()
+result_df = pd.DataFrame()
 result_df['Actual'] = y_test
 result_df['Predicted'] = y_pred
-# print(result_df.head())
+print(result_df)
